@@ -1,165 +1,208 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>賴皇菘｜IoT / 軟體工程作品集</title>
-  <meta name="description" content="賴皇菘的工程師作品集，包含 IoT 寵物陪伴系統、LINE 訂單自動化、LINE 主題設計與實習經歷。" />
-  <style>
-    :root{--bg:#0b1220;--card:#121b2f;--muted:#9fb0d0;--text:#e8eefb;--line:#23314f;--accent:#6ee7b7;--accent2:#8fb8ff;}
-    *{box-sizing:border-box} body{margin:0;font-family:Arial,"Noto Sans TC",sans-serif;background:linear-gradient(180deg,#0b1220,#10182c);color:var(--text);line-height:1.7}
-    a{color:var(--accent2);text-decoration:none} a:hover{text-decoration:underline}
-    .wrap{max-width:1080px;margin:0 auto;padding:24px}
-    .nav{display:flex;justify-content:space-between;align-items:center;gap:16px;position:sticky;top:0;background:rgba(11,18,32,.9);backdrop-filter:blur(10px);padding:14px 24px;border-bottom:1px solid var(--line)}
-    .nav .links{display:flex;gap:18px;flex-wrap:wrap}
-    .hero{padding:72px 0 32px}.tag{display:inline-block;padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--accent);font-size:14px}
-    h1{font-size:44px;line-height:1.15;margin:18px 0 12px} h2{font-size:28px;margin:0 0 18px} h3{font-size:20px;margin:0 0 10px}
-    .lead{max-width:760px;color:var(--muted);font-size:18px}
-    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.btn{display:inline-block;padding:12px 18px;border-radius:12px;border:1px solid var(--line);background:#16223d;color:var(--text)}
-    .btn.primary{background:var(--accent);color:#0b1220;border-color:transparent;font-weight:700}
-    .grid{display:grid;gap:18px}.grid-3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}.grid-2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
-    .card{background:rgba(18,27,47,.88);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.15)}
-    .muted{color:var(--muted)} .section{padding:28px 0}
-    ul{padding-left:20px;margin:10px 0} li{margin:6px 0}
-    .skills span{display:inline-block;margin:6px 8px 0 0;padding:8px 12px;background:#15213a;border:1px solid var(--line);border-radius:999px;font-size:14px}
-    .project-links{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px}
-    .footer{padding:36px 0 70px;color:var(--muted);font-size:14px}
-    code.inline{background:#15213a;border:1px solid var(--line);padding:2px 6px;border-radius:8px}
-  </style>
+<meta charset="UTF-8">
+<title>賴皇菘 | Portfolio</title>
+
+<style>
+body{
+font-family:Arial;
+margin:0;
+background:#0f172a;
+color:white;
+}
+
+.container{
+width:900px;
+margin:auto;
+}
+
+header{
+text-align:center;
+padding:80px 0;
+}
+
+h1{
+font-size:42px;
+margin:0;
+}
+
+.subtitle{
+color:#94a3b8;
+margin-top:10px;
+}
+
+.section{
+margin-top:80px;
+}
+
+.card{
+background:#1e293b;
+padding:25px;
+margin-top:20px;
+border-radius:10px;
+}
+
+.card a{
+color:#38bdf8;
+text-decoration:none;
+}
+
+.card a:hover{
+text-decoration:underline;
+}
+
+.skills span{
+display:inline-block;
+background:#1e293b;
+padding:6px 12px;
+margin:5px;
+border-radius:6px;
+font-size:14px;
+}
+
+footer{
+text-align:center;
+margin:80px 0;
+color:#94a3b8;
+}
+</style>
 </head>
+
 <body>
-  <nav class="nav">
-    <strong>賴皇菘 Lai Huang-Song</strong>
-    <div class="links">
-      <a href="#about">關於我</a>
-      <a href="#projects">專案</a>
-      <a href="#experience">經歷</a>
-      <a href="#contact">聯絡</a>
-    </div>
-  </nav>
 
-  <main class="wrap">
-    <section class="hero">
-      <span class="tag">IoT / 嵌入式 / Flutter / Flask</span>
-      <h1>把硬體、後端與行動 App 串成可運作的完整系統</h1>
-      <p class="lead">我是賴皇菘，資訊工程系畢業生，專長 IoT 系統整合、嵌入式開發與跨平台應用程式開發。熟悉 Raspberry Pi、Flask REST API、Flutter、Google Apps Script，能獨立完成從硬體控制、資料流程到 UI 展示的整合型專案。</p>
-      <div class="cta">
-        <a class="btn primary" href="https://github.com/lynn25004" target="_blank">查看 GitHub</a>
-        <a class="btn" href="[請替換成你的 LinkedIn 連結]" target="_blank">查看 LinkedIn</a>
-        <a class="btn" href="mailto:lynnn25004@gmail.com">Email 聯絡我</a>
-      </div>
-    </section>
+<div class="container">
 
-    <section id="about" class="section grid grid-2">
-      <div class="card">
-        <h2>關於我</h2>
-        <p>我擅長把不同層的技術串起來：例如以 Raspberry Pi 控制硬體，再由 Flask 提供 API，最後由 Flutter App 進行遠端操控與狀態顯示。除了工程開發，我也具備網站內容整理、簡報設計與 AI 工具導入能力，能在專案中兼顧技術與呈現。</p>
-      </div>
-      <div class="card">
-        <h2>核心技術</h2>
-        <div class="skills">
-          <span>Python</span><span>Flask REST API</span><span>Flutter</span><span>Dart</span><span>Raspberry Pi</span><span>GPIO</span><span>Google Apps Script</span><span>Google Sheets</span><span>LINE Messaging API</span><span>Git / GitHub</span><span>HTML / CSS</span><span>Linux</span>
-        </div>
-      </div>
-    </section>
+<header>
+<h1>賴皇菘</h1>
+<p class="subtitle">IoT / Embedded / Python / Flutter</p>
+</header>
 
-    <section id="projects" class="section">
-      <h2>代表專案</h2>
-      <div class="grid grid-2">
-        <article class="card">
-          <h3>IoT 寵物陪伴系統</h3>
-          <p class="muted">Raspberry Pi / Flask / Flutter / GPIO / MJPEG Streaming</p>
-          <p>以 Raspberry Pi 整合感測器、馬達與攝影機串流，並使用 Flask 建立 REST API、Flutter 開發控制 App，完成可遠端操控、自動避障、投食與即時影像串流的智慧寵物陪伴系統。</p>
-          <ul>
-            <li>完成硬體控制、後端 API 與 App 介面的跨層整合</li>
-            <li>支援遠端控制、自動避障與 MJPEG 即時影像串流</li>
-            <li>適合投遞 IoT、軟體整合、嵌入式應用職缺</li>
-          </ul>
-          <div class="project-links">
-            <a href="https://github.com/lynn25004/iot-pet-companion" target="_blank">GitHub Repo</a>
-            <a href="[請替換成此專案 Demo / 影片連結]" target="_blank">Demo / 影片</a>
-          </div>
-        </article>
+<section class="section">
+<h2>關於我</h2>
 
-        <article class="card">
-          <h3>跟團訂單自動化系統</h3>
-          <p class="muted">Google Apps Script / Google Sheets / LINE Messaging API</p>
-          <p>以 Google Apps Script 建立表單提交觸發器，自動搬移訂單資料至彙總工作表，並透過 LINE Messaging API 即時通知管理者，實現表單填寫到通知推播的零人工介入流程。</p>
-          <ul>
-            <li>建立 onFormSubmit 事件流程與資料去重邏輯</li>
-            <li>整合 LINE Push Message，提升訂單管理即時性</li>
-            <li>適合投遞自動化、內部工具、流程工程類職缺</li>
-          </ul>
-          <div class="project-links">
-            <a href="https://github.com/lynn25004/line-order-automation" target="_blank">GitHub Repo</a>
-          </div>
-        </article>
+<p>
+我是賴皇菘，資訊工程系畢業生，專長 IoT 系統整合、嵌入式開發與跨平台應用程式開發。
+熟悉 Raspberry Pi、Flask REST API、Flutter、Google Apps Script，
+能獨立完成從硬體控制、資料流程到 UI 展示的整合型專案。
+</p>
 
-        <article class="card">
-          <h3>LINE 主題設計 — NEKO.fly&mi</h3>
-          <p class="muted">LINE Creators Market / UI 視覺設計 / 上架流程</p>
-          <p>獨立設計並上架完整 LINE 主題，涵蓋聊天背景、按鍵、啟動畫面等 25+ 張圖檔，完成雙平台規格調整、命名與提交流程。</p>
-          <ul>
-            <li>展示跨平台設計適配與完整上架流程能力</li>
-            <li>能補強工程履歷中的產品感與 UI 表達能力</li>
-          </ul>
-          <div class="project-links">
-            <a href="https://github.com/lynn25004/line-theme-design" target="_blank">GitHub Repo</a>
-            <a href="https://reurl.cc/zQz63e" target="_blank">LINE Creators Market</a>
-          </div>
-        </article>
+<p>
+擅長將硬體、後端與行動 App 串成可運作的完整系統，
+並透過自動化流程與工具提升開發效率。
+</p>
 
-        <article class="card">
-          <h3>泰武漂鳥咖啡電商網站</h3>
-          <p class="muted">Strikingly / 電商架構 / 視覺排版</p>
-          <p>負責品牌電商網站建置、頁面排版、商品與訂單管理流程規劃，並整合專案簡報與視覺素材，呈現數位內容規劃能力。</p>
-        </article>
-      </div>
-    </section>
+</section>
 
-    <section id="experience" class="section grid grid-2">
-      <div class="card">
-        <h2>工作經歷</h2>
-        <h3>百佳泰股份有限公司 Allion Labs｜QA 測試工程師實習</h3>
-        <p class="muted">2024.02 – 2024.06</p>
-        <ul>
-          <li>執行 Windows / macOS / Chrome OS 跨平台相容性測試</li>
-          <li>使用 POWER-Z 量測充電功率與訊號傳輸</li>
-          <li>參與 USB、HDMI 介面標準規範驗證，撰寫測試報告</li>
-        </ul>
-        <h3>進昕塑膠有限公司｜生產技術支援</h3>
-        <p class="muted">學生時期至今</p>
-        <ul>
-          <li>協助塑膠射出生產線操作、品質檢查與設備維護</li>
-          <li>累積機械操作、製程觀察與現場問題排除經驗</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h2>求職定位</h2>
-        <p>這份作品集目前最適合投遞以下類型職缺：</p>
-        <ul>
-          <li>IoT / 嵌入式軟體工程師</li>
-          <li>軟體整合工程師</li>
-          <li>後端 / 自動化工具工程師</li>
-          <li>測試 / 驗證工程師</li>
-        </ul>
-        <p>若你要外投，建議搭配：<code class="inline">Resume_Engineer_Final.docx</code>、GitHub README、LinkedIn 中文檔案一起使用。</p>
-      </div>
-    </section>
+<section class="section">
+<h2>專案</h2>
 
-    <section id="contact" class="section card">
-      <h2>聯絡方式與互通設定</h2>
-      <p>這一版已經把整套求職系統的連結架構統一。你只要把下列 placeholder 換成正式連結，GitHub、作品集、LinkedIn 就能互相導流：</p>
-      <ul>
-        <li>作品集網址：<code class="inline">https://你的帳號.github.io/</code></li>
-        <li>LinkedIn：<code class="inline">[請替換成你的 LinkedIn 連結]</code></li>
-        <li>IoT Demo：<code class="inline">[請替換成此專案 Demo / 影片連結]</code></li>
-      </ul>
-      <p>Email：<a href="mailto:lynnn25004@gmail.com">lynnn25004@gmail.com</a><br>
-      GitHub：<a href="https://github.com/lynn25004" target="_blank">github.com/lynn25004</a></p>
-    </section>
+<div class="card">
+<h3>IoT 寵物陪伴系統</h3>
+<p>Raspberry Pi / Flask / Flutter / GPIO</p>
 
-    <div class="footer">© 2026 賴皇菘 Lai Huang-Song｜中文工程師求職系統版本</div>
-  </main>
+<p>
+設計智慧寵物陪伴系統，整合感測器、馬達、Flask REST API 與 Flutter APP。
+</p>
+
+<p>
+支援遠端操控、自動避障、MJPEG 即時影像串流
+</p>
+
+<p>
+<a href="https://github.com/lynn25004/iot-pet-companion">GitHub</a> |
+<a href="https://1drv.ms/p/c/fd71da1dea47895c/IQDMHEFFaX8uTKvxJABpXvbUAQDs-z8y2wv67DpPHBs7V6c?e=m2fXS5">Demo</a>
+</p>
+
+</div>
+
+
+<div class="card">
+<h3>跟團訂單自動化系統</h3>
+<p>Google Apps Script / Sheets / LINE API</p>
+
+<p>
+開發 Google Apps Script 自動化表單觸發器，實現訂單資料搬移與 LINE 推播。
+</p>
+
+<p>
+零人工介入全自動化流程：表單填寫 → 資料整理 → LINE 通知
+</p>
+
+<p>
+<a href="https://github.com/lynn25004/line-order-automation">GitHub</a>
+</p>
+
+</div>
+
+
+<div class="card">
+<h3>LINE 主題設計 — NEKO.fly&mi</h3>
+
+<p>
+獨立設計 25+ 張圖檔的完整 LINE 主題，通過審核上架。
+</p>
+
+<p>
+<a href="https://store.line.me/themeshop/product/NEKO.fly&mi">LINE Creators Market</a>
+</p>
+
+</div>
+
+
+<div class="card">
+<h3>泰武漂鳥咖啡電商網站</h3>
+
+<p>
+品牌電商網站建置，負責網頁排版、視覺設計與金流串接。
+</p>
+
+<p>
+<a href="https://1drv.ms/p/c/fd71da1dea47895c/IQB7H_sIkVauSI0abHVU85b4AeiNY1gkJ8f4P0qC-ME0C9k?e=yjNLsB">PPT</a>
+</p>
+
+</div>
+
+</section>
+
+
+<section class="section">
+<h2>技術</h2>
+
+<div class="skills">
+<span>Python</span>
+<span>C/C++</span>
+<span>Dart</span>
+<span>Flask</span>
+<span>Flutter</span>
+<span>Raspberry Pi</span>
+<span>Google Apps Script</span>
+<span>Git</span>
+<span>HTML/CSS</span>
+</div>
+
+</section>
+
+
+<section class="section">
+<h2>聯絡</h2>
+
+<p>Email：lynnn25004@gmail.com</p>
+
+<p>Phone：0926035605</p>
+
+<p>
+<a href="https://github.com/lynn25004">GitHub</a>
+</p>
+
+</section>
+
+
+<footer>
+<p>© 2025 Lai Huang-Song</p>
+</footer>
+
+</div>
+
 </body>
 </html>
