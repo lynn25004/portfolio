@@ -1,207 +1,637 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-<meta charset="UTF-8">
-<title>賴皇菘 | Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>賴皇菘 | Portfolio</title>
+  <meta name="description" content="賴皇菘的工程師作品集，展示 IoT、嵌入式、Python、Flutter、Google Apps Script 等專案經驗。">
 
-<style>
-body{
-font-family:Arial;
-margin:0;
-background:#0f172a;
-color:white;
-}
+  <style>
+    :root{
+      --bg:#0f172a;
+      --bg-soft:#111c34;
+      --card:#1e293b;
+      --card-hover:#24344d;
+      --text:#e2e8f0;
+      --muted:#94a3b8;
+      --primary:#38bdf8;
+      --primary-dark:#0ea5e9;
+      --border:rgba(148,163,184,.18);
+      --shadow:0 10px 30px rgba(0,0,0,.25);
+      --radius:18px;
+    }
 
-.container{
-width:900px;
-margin:auto;
-}
+    *{
+      box-sizing:border-box;
+    }
 
-header{
-text-align:center;
-padding:80px 0;
-}
+    html{
+      scroll-behavior:smooth;
+    }
 
-h1{
-font-size:42px;
-margin:0;
-}
+    body{
+      margin:0;
+      font-family:Arial, "Noto Sans TC", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,.10), transparent 26%),
+        radial-gradient(circle at top right, rgba(14,165,233,.08), transparent 24%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.7;
+    }
 
-.subtitle{
-color:#94a3b8;
-margin-top:10px;
-}
+    a{
+      color:var(--primary);
+      text-decoration:none;
+    }
 
-.section{
-margin-top:80px;
-}
+    a:hover{
+      color:#7dd3fc;
+    }
 
-.card{
-background:#1e293b;
-padding:25px;
-margin-top:20px;
-border-radius:10px;
-}
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 20px;
+    }
 
-.card a{
-color:#38bdf8;
-text-decoration:none;
-}
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      backdrop-filter:blur(10px);
+      background:rgba(15,23,42,.78);
+      border-bottom:1px solid rgba(148,163,184,.12);
+    }
 
-.card a:hover{
-text-decoration:underline;
-}
+    .nav-inner{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:14px 0;
+    }
 
-.skills span{
-display:inline-block;
-background:#1e293b;
-padding:6px 12px;
-margin:5px;
-border-radius:6px;
-font-size:14px;
-}
+    .brand{
+      font-size:18px;
+      font-weight:700;
+      color:#fff;
+      letter-spacing:.5px;
+    }
 
-footer{
-text-align:center;
-margin:80px 0;
-color:#94a3b8;
-}
-</style>
+    .nav-links{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .nav-links a{
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .nav-links a:hover{
+      color:#fff;
+    }
+
+    header.hero{
+      padding:90px 0 60px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.25fr .95fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .hero-card,
+    .side-card{
+      background:rgba(30,41,59,.72);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+
+    .hero-card{
+      padding:34px;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      margin-bottom:12px;
+      color:var(--primary);
+      font-size:14px;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    h1{
+      font-size:48px;
+      line-height:1.15;
+      margin:0 0 14px;
+      color:#fff;
+    }
+
+    .subtitle{
+      margin:0 0 20px;
+      color:var(--muted);
+      font-size:18px;
+    }
+
+    .intro{
+      margin:0 0 22px;
+      color:#cbd5e1;
+      font-size:16px;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:22px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:11px 16px;
+      border-radius:12px;
+      font-weight:700;
+      transition:.2s ease;
+      border:1px solid transparent;
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color:#082f49;
+    }
+
+    .btn-primary:hover{
+      color:#082f49;
+      transform:translateY(-1px);
+    }
+
+    .btn-secondary{
+      background:transparent;
+      color:#e2e8f0;
+      border-color:rgba(148,163,184,.25);
+    }
+
+    .btn-secondary:hover{
+      background:rgba(148,163,184,.08);
+      color:#fff;
+    }
+
+    .side-card{
+      padding:24px;
+    }
+
+    .info-list{
+      display:grid;
+      gap:14px;
+    }
+
+    .info-item{
+      padding:14px 16px;
+      border-radius:14px;
+      background:rgba(15,23,42,.55);
+      border:1px solid rgba(148,163,184,.10);
+    }
+
+    .info-label{
+      display:block;
+      font-size:12px;
+      color:var(--muted);
+      margin-bottom:4px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+
+    .info-value{
+      color:#fff;
+      font-size:15px;
+      word-break:break-word;
+    }
+
+    .section{
+      padding:34px 0;
+    }
+
+    .section-title{
+      font-size:28px;
+      margin:0 0 20px;
+      color:#fff;
+    }
+
+    .about-box{
+      background:rgba(30,41,59,.65);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:28px;
+      box-shadow:var(--shadow);
+    }
+
+    .about-box p{
+      margin:0 0 16px;
+      color:#dbe6f3;
+    }
+
+    .about-box p:last-child{
+      margin-bottom:0;
+    }
+
+    .project-grid{
+      display:grid;
+      gap:20px;
+    }
+
+    .card{
+      background:rgba(30,41,59,.75);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:24px;
+      box-shadow:var(--shadow);
+      transition:.2s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-3px);
+      background:rgba(36,52,77,.86);
+    }
+
+    .project-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:8px;
+    }
+
+    .project-header h3{
+      margin:0;
+      font-size:22px;
+      color:#fff;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(56,189,248,.12);
+      color:#7dd3fc;
+      font-size:12px;
+      font-weight:700;
+      border:1px solid rgba(56,189,248,.18);
+      white-space:nowrap;
+    }
+
+    .stack{
+      color:var(--muted);
+      font-size:14px;
+      margin-bottom:12px;
+    }
+
+    .project-desc{
+      color:#dbe6f3;
+      margin:0 0 10px;
+    }
+
+    .project-links{
+      margin-top:14px;
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .project-links a{
+      font-weight:700;
+    }
+
+    .skills-panel{
+      background:rgba(30,41,59,.65);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:24px;
+      box-shadow:var(--shadow);
+    }
+
+    .skill-group{
+      margin-bottom:18px;
+    }
+
+    .skill-group:last-child{
+      margin-bottom:0;
+    }
+
+    .skill-group h4{
+      margin:0 0 10px;
+      font-size:15px;
+      color:#cbd5e1;
+    }
+
+    .skills{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .skills span{
+      display:inline-block;
+      background:#162235;
+      border:1px solid rgba(148,163,184,.14);
+      color:#e2e8f0;
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:14px;
+    }
+
+    .contact-box{
+      background:rgba(30,41,59,.65);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:24px;
+      box-shadow:var(--shadow);
+    }
+
+    .contact-list{
+      display:grid;
+      gap:12px;
+    }
+
+    .contact-item{
+      padding:14px 16px;
+      background:rgba(15,23,42,.55);
+      border:1px solid rgba(148,163,184,.10);
+      border-radius:14px;
+    }
+
+    footer{
+      text-align:center;
+      margin:70px 0 40px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    @media (max-width: 900px){
+      .hero-grid{
+        grid-template-columns:1fr;
+      }
+
+      h1{
+        font-size:38px;
+      }
+    }
+
+    @media (max-width: 640px){
+      .nav-inner{
+        align-items:flex-start;
+        gap:12px;
+        flex-direction:column;
+      }
+
+      .nav-links{
+        gap:12px;
+      }
+
+      header.hero{
+        padding:70px 0 40px;
+      }
+
+      .hero-card,
+      .side-card,
+      .about-box,
+      .card,
+      .skills-panel,
+      .contact-box{
+        padding:20px;
+      }
+
+      h1{
+        font-size:32px;
+      }
+
+      .section-title{
+        font-size:24px;
+      }
+
+      .project-header h3{
+        font-size:20px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="container">
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">賴皇菘 Portfolio</div>
+      <div class="nav-links">
+        <a href="#about">關於我</a>
+        <a href="#projects">專案</a>
+        <a href="#skills">技術</a>
+        <a href="#contact">聯絡</a>
+      </div>
+    </div>
+  </nav>
 
-<header>
-<h1>賴皇菘</h1>
-<p class="subtitle">IoT / Embedded / Python / Flutter</p>
-</header>
+  <div class="container">
 
-<section class="section">
-<h2>關於我</h2>
+    <header class="hero">
+      <div class="hero-grid">
+        <div class="hero-card">
+          <span class="eyebrow">Portfolio</span>
+          <h1>賴皇菘</h1>
+          <p class="subtitle">IoT / Embedded / Python / Flutter</p>
+          <p class="intro">
+            我是賴皇菘，資訊工程系畢業生，專長 IoT 系統整合、嵌入式開發與跨平台應用程式開發。
+            熟悉 Raspberry Pi、Flask REST API、Flutter、Google Apps Script，能獨立完成從硬體控制、資料流程到 UI 展示的整合型專案。
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">查看專案</a>
+            <a class="btn btn-secondary" href="https://github.com/lynn25004" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </div>
 
-<p>
-我是賴皇菘，資訊工程系畢業生，專長 IoT 系統整合、嵌入式開發與跨平台應用程式開發。
-熟悉 Raspberry Pi、Flask REST API、Flutter、Google Apps Script，
-能獨立完成從硬體控制、資料流程到 UI 展示的整合型專案。
-</p>
+        <div class="side-card">
+          <div class="info-list">
+            <div class="info-item">
+              <span class="info-label">專長</span>
+              <div class="info-value">IoT 系統整合、嵌入式開發、跨平台應用開發</div>
+            </div>
+            <div class="info-item">
+              <span class="info-label">核心技術</span>
+              <div class="info-value">Raspberry Pi / Flask / Flutter / Google Apps Script</div>
+            </div>
+            <div class="info-item">
+              <span class="info-label">GitHub</span>
+              <div class="info-value">
+                <a href="https://github.com/lynn25004" target="_blank" rel="noopener noreferrer">github.com/lynn25004</a>
+              </div>
+            </div>
+            <div class="info-item">
+              <span class="info-label">聯絡方式</span>
+              <div class="info-value">Email：lynnn25004@gmail.com<br>Phone：0926035605</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
 
-<p>
-擅長將硬體、後端與行動 App 串成可運作的完整系統，
-並透過自動化流程與工具提升開發效率。
-</p>
+    <section class="section" id="about">
+      <h2 class="section-title">關於我</h2>
+      <div class="about-box">
+        <p>
+          我是賴皇菘，資訊工程系畢業生，專長 IoT 系統整合、嵌入式開發與跨平台應用程式開發。
+          熟悉 Raspberry Pi、Flask REST API、Flutter、Google Apps Script，能獨立完成從硬體控制、資料流程到 UI 展示的整合型專案。
+        </p>
 
-</section>
+        <p>
+          擅長將硬體、後端與行動 App 串成可運作的完整系統，
+          並透過自動化流程與工具提升開發效率。
+        </p>
+      </div>
+    </section>
 
-<section class="section">
-<h2>專案</h2>
+    <section class="section" id="projects">
+      <h2 class="section-title">專案</h2>
 
-<div class="card">
-<h3>IoT 寵物陪伴系統</h3>
-<p>Raspberry Pi / Flask / Flutter / GPIO</p>
+      <div class="project-grid">
 
-<p>
-設計智慧寵物陪伴系統，整合感測器、馬達、Flask REST API 與 Flutter APP。
-</p>
+        <div class="card">
+          <div class="project-header">
+            <h3>IoT 寵物陪伴系統</h3>
+            <span class="badge">IoT Project</span>
+          </div>
+          <div class="stack">Raspberry Pi / Flask / Flutter / GPIO</div>
 
-<p>
-支援遠端操控、自動避障、MJPEG 即時影像串流
-</p>
+          <p class="project-desc">
+            設計智慧寵物陪伴系統，整合感測器、馬達、Flask REST API 與 Flutter APP。
+          </p>
 
-<p>
-<a href="https://github.com/lynn25004/IoT-Pet-companion-machine" target="_blank">GitHub</a> |
-<a href="https://1drv.ms/p/c/fd71da1dea47895c/IQDMHEFFaX8uTKvxJABpXvbUAQDs-z8y2wv67DpPHBs7V6c?e=m2fXS5">Demo</a>
-</p>
+          <p class="project-desc">
+            支援遠端操控、自動避障、MJPEG 即時影像串流
+          </p>
 
-</div>
+          <div class="project-links">
+            <a href="https://github.com/lynn25004/IoT-Pet-companion-machine" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://1drv.ms/p/c/fd71da1dea47895c/IQDMHEFFaX8uTKvxJABpXvbUAQDs-z8y2wv67DpPHBs7V6c?e=m2fXS5" target="_blank" rel="noopener noreferrer">Demo</a>
+          </div>
+        </div>
 
+        <div class="card">
+          <div class="project-header">
+            <h3>跟團訂單自動化系統</h3>
+            <span class="badge">Automation</span>
+          </div>
+          <div class="stack">Google Apps Script / Sheets / LINE API</div>
 
-<div class="card">
-<h3>跟團訂單自動化系統</h3>
-<p>Google Apps Script / Sheets / LINE API</p>
+          <p class="project-desc">
+            開發 Google Apps Script 自動化表單觸發器，實現訂單資料搬移與 LINE 推播。
+          </p>
 
-<p>
-開發 Google Apps Script 自動化表單觸發器，實現訂單資料搬移與 LINE 推播。
-</p>
+          <p class="project-desc">
+            零人工介入全自動化流程：表單填寫 → 資料整理 → LINE 通知
+          </p>
 
-<p>
-零人工介入全自動化流程：表單填寫 → 資料整理 → LINE 通知
-</p>
+          <div class="project-links">
+            <a href="https://github.com/lynn25004/line-order-automation" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </div>
 
-<p><a href="https://github.com/lynn25004/line-order-automation" target="_blank">GitHub</a> 
-</p>
+        <div class="card">
+          <div class="project-header">
+            <h3>LINE 主題設計 — NEKO.fly&mi</h3>
+            <span class="badge">Design</span>
+          </div>
 
-</div>
+          <p class="project-desc">
+            獨立設計 25+ 張圖檔的完整 LINE 主題，通過審核上架。
+          </p>
 
+          <div class="project-links">
+            <a href="https://store.line.me/themeshop/product/NEKO.fly%26mi" target="_blank" rel="noopener noreferrer">LINE Creators Market</a>
+          </div>
+        </div>
 
-<div class="card">
-<h3>LINE 主題設計 — NEKO.fly&mi</h3>
+        <div class="card">
+          <div class="project-header">
+            <h3>泰武漂鳥咖啡電商網站</h3>
+            <span class="badge">E-commerce</span>
+          </div>
 
-<p>
-獨立設計 25+ 張圖檔的完整 LINE 主題，通過審核上架。
-</p>
+          <p class="project-desc">
+            品牌電商網站建置，負責網頁排版、視覺設計與金流串接。
+          </p>
 
-<p>
-<a href="https://store.line.me/themeshop/product/NEKO.fly&mi">LINE Creators Market</a>
-</p>
+          <div class="project-links">
+            <a href="https://1drv.ms/p/c/fd71da1dea47895c/IQB7H_sIkVauSI0abHVU85b4AeiNY1gkJ8f4P0qC-ME0C9k?e=yjNLsB" target="_blank" rel="noopener noreferrer">PPT</a>
+          </div>
+        </div>
 
-</div>
+      </div>
+    </section>
 
+    <section class="section" id="skills">
+      <h2 class="section-title">技術</h2>
 
-<div class="card">
-<h3>泰武漂鳥咖啡電商網站</h3>
+      <div class="skills-panel">
+        <div class="skill-group">
+          <h4>程式語言</h4>
+          <div class="skills">
+            <span>Python</span>
+            <span>C/C++</span>
+            <span>Dart</span>
+          </div>
+        </div>
 
-<p>
-品牌電商網站建置，負責網頁排版、視覺設計與金流串接。
-</p>
+        <div class="skill-group">
+          <h4>框架與工具</h4>
+          <div class="skills">
+            <span>Flask</span>
+            <span>Flutter</span>
+            <span>Google Apps Script</span>
+            <span>Git</span>
+            <span>HTML/CSS</span>
+          </div>
+        </div>
 
-<p>
-<a href="https://1drv.ms/p/c/fd71da1dea47895c/IQB7H_sIkVauSI0abHVU85b4AeiNY1gkJ8f4P0qC-ME0C9k?e=yjNLsB">PPT</a>
-</p>
+        <div class="skill-group">
+          <h4>系統與整合</h4>
+          <div class="skills">
+            <span>Raspberry Pi</span>
+            <span>GPIO</span>
+            <span>REST API</span>
+            <span>IoT Integration</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-</div>
+    <section class="section" id="contact">
+      <h2 class="section-title">聯絡</h2>
 
-</section>
+      <div class="contact-box">
+        <div class="contact-list">
+          <div class="contact-item">
+            Email：<a href="mailto:lynnn25004@gmail.com">lynnn25004@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            Phone：<a href="tel:0926035605">0926035605</a>
+          </div>
+          <div class="contact-item">
+            GitHub：<a href="https://github.com/lynn25004" target="_blank" rel="noopener noreferrer">github.com/lynn25004</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-
-<section class="section">
-<h2>技術</h2>
-
-<div class="skills">
-<span>Python</span>
-<span>C/C++</span>
-<span>Dart</span>
-<span>Flask</span>
-<span>Flutter</span>
-<span>Raspberry Pi</span>
-<span>Google Apps Script</span>
-<span>Git</span>
-<span>HTML/CSS</span>
-</div>
-
-</section>
-
-
-<section class="section">
-<h2>聯絡</h2>
-
-<p>Email：lynnn25004@gmail.com</p>
-
-<p>Phone：0926035605</p>
-
-<p>
-<a href="https://github.com/lynn25004">GitHub</a>
-</p>
-
-</section>
-
-
-<footer>
-<p>© 2025 Lai Huang-Song</p>
-</footer>
-
-</div>
-
+    <footer>
+      <p>© 2025 Lai Huang-Song</p>
+    </footer>
+  </div>
 </body>
 </html>
