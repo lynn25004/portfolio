@@ -23,6 +23,8 @@
 
     *{
       box-sizing:border-box;
+      margin:0;
+      padding:0;
     }
 
     html{
@@ -30,7 +32,6 @@
     }
 
     body{
-      margin:0;
       font-family:Arial, "Noto Sans TC", sans-serif;
       background:
         radial-gradient(circle at top left, rgba(56,189,248,.10), transparent 26%),
@@ -43,6 +44,7 @@
     a{
       color:var(--primary);
       text-decoration:none;
+      transition:.2s ease;
     }
 
     a:hover{
@@ -93,7 +95,7 @@
       color:#fff;
     }
 
-    header.hero{
+    .hero{
       padding:90px 0 60px;
     }
 
@@ -105,7 +107,11 @@
     }
 
     .hero-card,
-    .side-card{
+    .side-card,
+    .about-box,
+    .skills-panel,
+    .contact-box,
+    .card{
       background:rgba(30,41,59,.72);
       border:1px solid var(--border);
       border-radius:var(--radius);
@@ -114,6 +120,14 @@
 
     .hero-card{
       padding:34px;
+    }
+
+    .side-card,
+    .about-box,
+    .skills-panel,
+    .contact-box,
+    .card{
+      padding:24px;
     }
 
     .eyebrow{
@@ -129,20 +143,20 @@
     h1{
       font-size:48px;
       line-height:1.15;
-      margin:0 0 14px;
+      margin-bottom:14px;
       color:#fff;
     }
 
     .subtitle{
-      margin:0 0 20px;
+      margin-bottom:20px;
       color:var(--muted);
       font-size:18px;
     }
 
     .intro{
-      margin:0 0 22px;
       color:#cbd5e1;
       font-size:16px;
+      margin-bottom:22px;
     }
 
     .hero-actions{
@@ -184,16 +198,14 @@
       color:#fff;
     }
 
-    .side-card{
-      padding:24px;
-    }
-
-    .info-list{
+    .info-list,
+    .contact-list{
       display:grid;
       gap:14px;
     }
 
-    .info-item{
+    .info-item,
+    .contact-item{
       padding:14px 16px;
       border-radius:14px;
       background:rgba(15,23,42,.55);
@@ -221,21 +233,13 @@
 
     .section-title{
       font-size:28px;
-      margin:0 0 20px;
+      margin-bottom:20px;
       color:#fff;
     }
 
-    .about-box{
-      background:rgba(30,41,59,.65);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:28px;
-      box-shadow:var(--shadow);
-    }
-
     .about-box p{
-      margin:0 0 16px;
       color:#dbe6f3;
+      margin-bottom:16px;
     }
 
     .about-box p:last-child{
@@ -248,11 +252,6 @@
     }
 
     .card{
-      background:rgba(30,41,59,.75);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:24px;
-      box-shadow:var(--shadow);
       transition:.2s ease;
     }
 
@@ -271,7 +270,6 @@
     }
 
     .project-header h3{
-      margin:0;
       font-size:22px;
       color:#fff;
     }
@@ -296,7 +294,7 @@
 
     .project-desc{
       color:#dbe6f3;
-      margin:0 0 10px;
+      margin-bottom:10px;
     }
 
     .project-links{
@@ -310,14 +308,6 @@
       font-weight:700;
     }
 
-    .skills-panel{
-      background:rgba(30,41,59,.65);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:24px;
-      box-shadow:var(--shadow);
-    }
-
     .skill-group{
       margin-bottom:18px;
     }
@@ -327,7 +317,7 @@
     }
 
     .skill-group h4{
-      margin:0 0 10px;
+      margin-bottom:10px;
       font-size:15px;
       color:#cbd5e1;
     }
@@ -346,26 +336,6 @@
       padding:8px 12px;
       border-radius:999px;
       font-size:14px;
-    }
-
-    .contact-box{
-      background:rgba(30,41,59,.65);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:24px;
-      box-shadow:var(--shadow);
-    }
-
-    .contact-list{
-      display:grid;
-      gap:12px;
-    }
-
-    .contact-item{
-      padding:14px 16px;
-      background:rgba(15,23,42,.55);
-      border:1px solid rgba(148,163,184,.10);
-      border-radius:14px;
     }
 
     footer{
@@ -396,7 +366,7 @@
         gap:12px;
       }
 
-      header.hero{
+      .hero{
         padding:70px 0 40px;
       }
 
@@ -425,7 +395,6 @@
 </head>
 
 <body>
-
   <nav class="nav">
     <div class="container nav-inner">
       <div class="brand">賴皇菘 Portfolio</div>
@@ -439,7 +408,6 @@
   </nav>
 
   <div class="container">
-
     <header class="hero">
       <div class="hero-grid">
         <div class="hero-card">
@@ -488,7 +456,6 @@
           我是賴皇菘，資訊工程系畢業生，專長 IoT 系統整合、嵌入式開發與跨平台應用程式開發。
           熟悉 Raspberry Pi、Flask REST API、Flutter、Google Apps Script，能獨立完成從硬體控制、資料流程到 UI 展示的整合型專案。
         </p>
-
         <p>
           擅長將硬體、後端與行動 App 串成可運作的完整系統，
           並透過自動化流程與工具提升開發效率。
@@ -500,22 +467,18 @@
       <h2 class="section-title">專案</h2>
 
       <div class="project-grid">
-
         <div class="card">
           <div class="project-header">
             <h3>IoT 寵物陪伴系統</h3>
             <span class="badge">IoT Project</span>
           </div>
           <div class="stack">Raspberry Pi / Flask / Flutter / GPIO</div>
-
           <p class="project-desc">
             設計智慧寵物陪伴系統，整合感測器、馬達、Flask REST API 與 Flutter APP。
           </p>
-
           <p class="project-desc">
             支援遠端操控、自動避障、MJPEG 即時影像串流
           </p>
-
           <div class="project-links">
             <a href="https://github.com/lynn25004/IoT-Pet-companion-machine" target="_blank" rel="noopener noreferrer">GitHub</a>
             <a href="https://1drv.ms/p/c/fd71da1dea47895c/IQDMHEFFaX8uTKvxJABpXvbUAQDs-z8y2wv67DpPHBs7V6c?e=m2fXS5" target="_blank" rel="noopener noreferrer">Demo</a>
@@ -528,15 +491,12 @@
             <span class="badge">Automation</span>
           </div>
           <div class="stack">Google Apps Script / Sheets / LINE API</div>
-
           <p class="project-desc">
             開發 Google Apps Script 自動化表單觸發器，實現訂單資料搬移與 LINE 推播。
           </p>
-
           <p class="project-desc">
             零人工介入全自動化流程：表單填寫 → 資料整理 → LINE 通知
           </p>
-
           <div class="project-links">
             <a href="https://github.com/lynn25004/line-order-automation" target="_blank" rel="noopener noreferrer">GitHub</a>
           </div>
@@ -547,40 +507,33 @@
             <h3>LINE 主題設計 — NEKO.fly&mi</h3>
             <span class="badge">Design</span>
           </div>
-
           <p class="project-desc">
             獨立設計 25+ 張圖檔的完整 LINE 主題，通過審核上架。
           </p>
-
-         <div class="project-links">
-  <a href="https://store.line.me/themeshop/product/34806945-b3af-4e94-95bf-a31d87dbbe30/zh-Hant"
-     target="_blank"
-     rel="noopener noreferrer">
-     LINE Creators Market
-  </a>
-</div>
+          <div class="project-links">
+            <a href="https://store.line.me/themeshop/product/34806945-b3af-4e94-95bf-a31d87dbbe30/zh-Hant" target="_blank" rel="noopener noreferrer">
+              LINE Creators Market
+            </a>
+          </div>
+        </div>
 
         <div class="card">
           <div class="project-header">
             <h3>泰武漂鳥咖啡電商網站</h3>
             <span class="badge">E-commerce</span>
           </div>
-
           <p class="project-desc">
             品牌電商網站建置，負責網頁排版、視覺設計與金流串接。
           </p>
-
           <div class="project-links">
             <a href="https://1drv.ms/p/c/fd71da1dea47895c/IQB7H_sIkVauSI0abHVU85b4AeiNY1gkJ8f4P0qC-ME0C9k?e=yjNLsB" target="_blank" rel="noopener noreferrer">PPT</a>
           </div>
         </div>
-
       </div>
     </section>
 
     <section class="section" id="skills">
       <h2 class="section-title">技術</h2>
-
       <div class="skills-panel">
         <div class="skill-group">
           <h4>程式語言</h4>
@@ -616,7 +569,6 @@
 
     <section class="section" id="contact">
       <h2 class="section-title">聯絡</h2>
-
       <div class="contact-box">
         <div class="contact-list">
           <div class="contact-item">
