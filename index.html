@@ -296,6 +296,36 @@
       white-space:nowrap;
     }
 
+    .live-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:5px 10px;
+      border-radius:999px;
+      background:rgba(34,197,94,.10);
+      color:#86efac;
+      font-size:12px;
+      font-weight:600;
+      border:1px solid rgba(34,197,94,.22);
+      white-space:nowrap;
+      margin-bottom:10px;
+    }
+
+    .live-dot{
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:#22c55e;
+      box-shadow:0 0 0 0 rgba(34,197,94,.5);
+      animation:pulse 2s infinite;
+    }
+
+    @keyframes pulse{
+      0%{box-shadow:0 0 0 0 rgba(34,197,94,.5);}
+      70%{box-shadow:0 0 0 6px rgba(34,197,94,0);}
+      100%{box-shadow:0 0 0 0 rgba(34,197,94,0);}
+    }
+
     .stack{
       color:var(--muted);
       font-size:14px;
@@ -544,11 +574,12 @@
       <h2 class="section-title">專案</h2>
 
       <div class="project-grid">
-        <div class="card">
+        <div class="card" data-repo="lynn-daily-language">
           <div class="project-header">
             <h3>每日英日文 AI 學習 Bot</h3>
             <span class="badge">AI Automation</span>
           </div>
+          <span class="live-badge"><span class="live-dot"></span>每日自動更新 · <span class="last-update">載入中…</span></span>
           <div class="stack">Python / GitHub Actions / Gemini API / LINE API / pytest</div>
           <p class="project-desc">
             全自動語言學習系統，每日 09:00 由 Gemini 生成 10 英文 + 10 日文單字與文法，
@@ -565,11 +596,12 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-repo="lynn-daily-briefing">
           <div class="project-header">
             <h3>個人化每日晨報 Bot</h3>
             <span class="badge">AI Automation</span>
           </div>
+          <span class="live-badge"><span class="live-dot"></span>每日自動更新 · <span class="last-update">載入中…</span></span>
           <div class="stack">Python / GitHub Actions / Gmail IMAP / Gemini API / Telegram Bot</div>
           <p class="project-desc">
             每日 08:30 自動彙整個人資訊推播到 Telegram：Gmail 求職信過濾（面試/錄取關鍵字）、
@@ -581,6 +613,49 @@
           </p>
           <div class="project-links">
             <a href="https://github.com/lynn25004/lynn-daily-briefing" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </div>
+
+        <div class="card" data-repo="nijisanji-orders">
+          <div class="project-header">
+            <h3>彩虹社代購訂單追蹤站</h3>
+            <span class="badge">Full-Stack</span>
+          </div>
+          <span class="live-badge"><span class="live-dot"></span>每日自動更新 · <span class="last-update">載入中…</span></span>
+          <div class="stack">Next.js 14 / TypeScript / Tailwind / Supabase / Vercel Cron</div>
+          <p class="project-desc">
+            自架的代購訂單追蹤系統，整合樂淘一番 API 自動同步訂單，依 VTuber（推し）聚合商品，
+            支援願望清單、雷達自動發現新商品、年度回顧頁。
+          </p>
+          <p class="project-desc">
+            技術亮點：Next.js App Router + Server Actions、Supabase Postgres + RLS、
+            6 條 Vercel Cron 排程（同步訂單、深掃商品、自動標 talent tag）、
+            手機優先 UI 與 deep link 整合。
+          </p>
+          <div class="project-links">
+            <a href="https://github.com/lynn25004/nijisanji-orders" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://nijisanji-orders.vercel.app/" target="_blank" rel="noopener noreferrer">Live Site</a>
+          </div>
+        </div>
+
+        <div class="card" data-repo="nijisanji-oshi">
+          <div class="project-header">
+            <h3>彩虹社推し選擇器</h3>
+            <span class="badge">Frontend</span>
+          </div>
+          <span class="live-badge"><span class="live-dot"></span>每日自動更新 · <span class="last-update">載入中…</span></span>
+          <div class="stack">HTML / Vanilla JS / Python / GitHub Actions / GitHub Pages</div>
+          <p class="project-desc">
+            純前端的彩虹社成員探索工具，多選推し後即時抓取 shop.nijisanji.jp 在架商品，
+            按上架時間排序、自動過濾下架，支援分享連結讓朋友同步看清單。
+          </p>
+          <p class="project-desc">
+            技術亮點：多 CORS proxy fallback 容錯、firstSeenAt 排序避免再販誤判新品、
+            自動標畢業成員、GitHub Actions 每日 08:00 自動更新成員與商品資料。
+          </p>
+          <div class="project-links">
+            <a href="https://github.com/lynn25004/nijisanji-oshi" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://lynn25004.github.io/nijisanji-oshi/" target="_blank" rel="noopener noreferrer">Live Site</a>
           </div>
         </div>
 
@@ -855,5 +930,24 @@
       <p>© 2025 Lai Huang-Song</p>
     </footer>
   </div>
+
+  <script>
+    // 每日同步：從 data/status.json 讀各專案最新更新日期填入卡片
+    fetch('data/status.json?t=' + Date.now())
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        if (!data || !data.repos) return;
+        document.querySelectorAll('.card[data-repo]').forEach(card => {
+          const repo = card.getAttribute('data-repo');
+          const date = data.repos[repo];
+          const slot = card.querySelector('.last-update');
+          if (slot && date) slot.textContent = '最後更新 ' + date;
+          else if (slot) slot.textContent = '—';
+        });
+      })
+      .catch(() => {
+        document.querySelectorAll('.last-update').forEach(el => el.textContent = '—');
+      });
+  </script>
 </body>
 </html>

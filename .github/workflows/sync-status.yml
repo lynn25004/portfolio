@@ -1,0 +1,72 @@
+name: Sync project status
+
+on:
+  schedule:
+    # 06:00 Asia/Taipei = 22:00 UTC（前一天）
+    - cron: '0 22 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update status.json
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+
+          REPOS=(
+            "lynn25004/lynn-daily-language"
+            "lynn25004/lynn-daily-briefing"
+            "lynn25004/nijisanji-orders"
+            "lynn25004/nijisanji-oshi"
+          )
+
+          mkdir -p data
+
+          today=$(TZ=Asia/Taipei date +%F)
+          tmp=$(mktemp)
+          echo "{" > "$tmp"
+          echo "  \"lastSync\": \"$today\"," >> "$tmp"
+          echo "  \"repos\": {" >> "$tmp"
+
+          last=$((${#REPOS[@]} - 1))
+          for i in "${!REPOS[@]}"; do
+            full="${REPOS[$i]}"
+            name="${full##*/}"
+            iso=$(curl -s -H "Authorization: Bearer $GH_TOKEN" \
+              "https://api.github.com/repos/$full/commits?per_page=1" \
+              | grep -m1 '"date"' | sed -E 's/.*"date": *"([^"]+)".*/\1/')
+            if [ -z "$iso" ]; then
+              date_str="$today"
+            else
+              date_str=$(TZ=Asia/Taipei date -d "$iso" +%F)
+            fi
+            comma=","
+            [ "$i" = "$last" ] && comma=""
+            echo "    \"$name\": \"$date_str\"$comma" >> "$tmp"
+          done
+
+          echo "  }" >> "$tmp"
+          echo "}" >> "$tmp"
+
+          mv "$tmp" data/status.json
+          cat data/status.json
+
+      - name: Commit if changed
+        run: |
+          if git diff --quiet data/status.json; then
+            echo "No change."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/status.json
+          git commit -m "chore: sync project status $(TZ=Asia/Taipei date +%F)"
+          git push
