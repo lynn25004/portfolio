@@ -5,9 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>賴皇菘 | Portfolio</title>
   <meta name="description" content="賴皇菘的工程師作品集，展示 IoT、嵌入式、Python、Flutter、Google Apps Script 等專案經驗、證照與獎狀。">
+  <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/svg+xml" href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="%230f172a"/><text x="50%25" y="55%25" font-size="36" text-anchor="middle" dominant-baseline="middle" font-family="Arial,sans-serif" font-weight="700" fill="%2338bdf8">L</text></svg>'>
+  <meta property="og:title" content="賴皇菘 | Portfolio">
+  <meta property="og:description" content="IoT / Embedded / Python / AI Automation — 工程師作品集">
+  <meta property="og:type" content="website">
+  <script>
+    // 早期套用主題，避免閃白
+    (function(){
+      try{
+        var saved=localStorage.getItem('portfolio-theme');
+        var sys=window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';
+        document.documentElement.dataset.theme=saved||sys;
+      }catch(e){document.documentElement.dataset.theme='dark';}
+    })();
+  </script>
 
   <style>
-    :root{
+    :root,
+    [data-theme="dark"]{
       --bg:#0f172a;
       --card:#1e293b;
       --card-hover:#24344d;
@@ -18,6 +35,60 @@
       --border:rgba(148,163,184,.18);
       --shadow:0 10px 30px rgba(0,0,0,.25);
       --radius:18px;
+      --grad-1:rgba(56,189,248,.10);
+      --grad-2:rgba(14,165,233,.08);
+      --nav-bg:rgba(15,23,42,.78);
+      --nav-border:rgba(148,163,184,.12);
+      --card-bg:rgba(30,41,59,.72);
+      --card-bg-strong:rgba(36,52,77,.86);
+      --skills-bg:rgba(15,23,42,.55);
+      --eyebrow-bg:rgba(56,189,248,.12);
+      --brand:#fff;
+      --hover-link:#7dd3fc;
+      --project-desc:#dbe6f3;
+    }
+
+    [data-theme="light"]{
+      --bg:#f6f8fc;
+      --card:#ffffff;
+      --card-hover:#eef2f8;
+      --text:#0f172a;
+      --muted:#475569;
+      --primary:#0ea5e9;
+      --primary-dark:#0284c7;
+      --border:rgba(15,23,42,.10);
+      --shadow:0 6px 22px rgba(15,23,42,.08);
+      --grad-1:rgba(56,189,248,.18);
+      --grad-2:rgba(14,165,233,.10);
+      --nav-bg:rgba(255,255,255,.86);
+      --nav-border:rgba(15,23,42,.08);
+      --card-bg:rgba(255,255,255,.92);
+      --card-bg-strong:#ffffff;
+      --skills-bg:rgba(15,23,42,.04);
+      --eyebrow-bg:rgba(14,165,233,.10);
+      --brand:#0f172a;
+      --hover-link:#0284c7;
+      --project-desc:#1e293b;
+    }
+
+    .theme-toggle{
+      background:var(--card-bg);
+      border:1px solid var(--border);
+      color:var(--text);
+      width:34px;
+      height:34px;
+      border-radius:50%;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:15px;
+      transition:transform .2s,border-color .2s;
+      margin-left:6px;
+    }
+    .theme-toggle:hover{
+      border-color:var(--primary);
+      transform:rotate(15deg);
     }
 
     *{
@@ -33,11 +104,12 @@
     body{
       font-family:Arial, "Noto Sans TC", sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(56,189,248,.10), transparent 26%),
-        radial-gradient(circle at top right, rgba(14,165,233,.08), transparent 24%),
+        radial-gradient(circle at top left, var(--grad-1), transparent 26%),
+        radial-gradient(circle at top right, var(--grad-2), transparent 24%),
         var(--bg);
       color:var(--text);
       line-height:1.7;
+      transition:background .25s,color .25s;
     }
 
     a{
@@ -47,7 +119,7 @@
     }
 
     a:hover{
-      color:#7dd3fc;
+      color:var(--hover-link);
     }
 
     img{
@@ -67,8 +139,8 @@
       top:0;
       z-index:1000;
       backdrop-filter:blur(10px);
-      background:rgba(15,23,42,.78);
-      border-bottom:1px solid rgba(148,163,184,.12);
+      background:var(--nav-bg);
+      border-bottom:1px solid var(--nav-border);
     }
 
     .nav-inner{
@@ -81,7 +153,7 @@
     .brand{
       font-size:18px;
       font-weight:700;
-      color:#fff;
+      color:var(--brand);
       letter-spacing:.5px;
     }
 
@@ -97,7 +169,7 @@
     }
 
     .nav-links a:hover{
-      color:#fff;
+      color:var(--brand);
     }
 
     .hero{
@@ -117,7 +189,7 @@
     .skills-panel,
     .contact-box,
     .card{
-      background:rgba(30,41,59,.72);
+      background:var(--card-bg);
       border:1px solid var(--border);
       border-radius:var(--radius);
       box-shadow:var(--shadow);
@@ -149,7 +221,7 @@
       font-size:48px;
       line-height:1.15;
       margin-bottom:14px;
-      color:#fff;
+      color:var(--brand);
     }
 
     .subtitle{
@@ -159,7 +231,7 @@
     }
 
     .intro{
-      color:#cbd5e1;
+      color:var(--project-desc);
       font-size:16px;
       margin-bottom:22px;
     }
@@ -194,13 +266,13 @@
 
     .btn-secondary{
       background:transparent;
-      color:#e2e8f0;
-      border-color:rgba(148,163,184,.25);
+      color:var(--text);
+      border-color:var(--border);
     }
 
     .btn-secondary:hover{
-      background:rgba(148,163,184,.08);
-      color:#fff;
+      background:var(--skills-bg);
+      color:var(--brand);
     }
 
     .info-list,
@@ -213,8 +285,8 @@
     .contact-item{
       padding:14px 16px;
       border-radius:14px;
-      background:rgba(15,23,42,.55);
-      border:1px solid rgba(148,163,184,.10);
+      background:var(--skills-bg);
+      border:1px solid var(--border);
     }
 
     .info-label{
@@ -227,7 +299,7 @@
     }
 
     .info-value{
-      color:#fff;
+      color:var(--brand);
       font-size:15px;
       word-break:break-word;
     }
@@ -239,7 +311,7 @@
     .section-title{
       font-size:28px;
       margin-bottom:20px;
-      color:#fff;
+      color:var(--brand);
     }
 
     .section-desc{
@@ -267,7 +339,7 @@
 
     .card:hover{
       transform:translateY(-3px);
-      background:rgba(36,52,77,.86);
+      background:var(--card-bg-strong);
     }
 
     .project-header{
@@ -281,18 +353,18 @@
 
     .project-header h3{
       font-size:22px;
-      color:#fff;
+      color:var(--brand);
     }
 
     .badge{
       display:inline-block;
       padding:6px 10px;
       border-radius:999px;
-      background:rgba(56,189,248,.12);
-      color:#7dd3fc;
+      background:var(--eyebrow-bg);
+      color:var(--primary);
       font-size:12px;
       font-weight:700;
-      border:1px solid rgba(56,189,248,.18);
+      border:1px solid var(--border);
       white-space:nowrap;
     }
 
@@ -307,6 +379,21 @@
       font-size:12px;
       font-weight:600;
       border:1px solid rgba(34,197,94,.22);
+      white-space:nowrap;
+      margin-bottom:10px;
+    }
+
+    .static-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:5px 10px;
+      border-radius:999px;
+      background:rgba(148,163,184,.10);
+      color:var(--muted);
+      font-size:12px;
+      font-weight:600;
+      border:1px solid rgba(148,163,184,.18);
       white-space:nowrap;
       margin-bottom:10px;
     }
@@ -333,7 +420,7 @@
     }
 
     .project-desc{
-      color:#dbe6f3;
+      color:var(--project-desc);
       margin-bottom:10px;
     }
 
@@ -359,7 +446,7 @@
     .skill-group h4{
       margin-bottom:10px;
       font-size:15px;
-      color:#cbd5e1;
+      color:var(--project-desc);
     }
 
     .skills{
@@ -370,9 +457,9 @@
 
     .skills span{
       display:inline-block;
-      background:#162235;
-      border:1px solid rgba(148,163,184,.14);
-      color:#e2e8f0;
+      background:var(--skills-bg);
+      border:1px solid var(--border);
+      color:var(--text);
       padding:8px 12px;
       border-radius:999px;
       font-size:14px;
@@ -385,7 +472,7 @@
     }
 
     .gallery-card{
-      background:rgba(30,41,59,.72);
+      background:var(--card-bg);
       border:1px solid var(--border);
       border-radius:var(--radius);
       box-shadow:var(--shadow);
@@ -395,7 +482,7 @@
 
     .gallery-card:hover{
       transform:translateY(-3px);
-      background:rgba(36,52,77,.86);
+      background:var(--card-bg-strong);
     }
 
     .gallery-image-wrap{
@@ -406,7 +493,7 @@
       width:100%;
       height:320px;
       object-fit:contain;
-      background:#0b1220;
+      background:var(--skills-bg);
       border-radius:14px;
     }
 
@@ -417,19 +504,19 @@
     .gallery-title{
       font-size:18px;
       font-weight:700;
-      color:#fff;
+      color:var(--brand);
       margin-bottom:6px;
     }
 
     .gallery-meta{
       font-size:13px;
-      color:#7dd3fc;
+      color:var(--primary);
       margin-bottom:8px;
     }
 
     .gallery-desc{
       font-size:14px;
-      color:#cbd5e1;
+      color:var(--project-desc);
     }
 
     footer{
@@ -508,6 +595,7 @@
         <a href="#certifications">證照</a>
         <a href="#awards">獎狀</a>
         <a href="#contact">聯絡</a>
+        <button id="theme-toggle" class="theme-toggle" aria-label="切換主題" title="切換深色 / 淺色">🌙</button>
       </div>
     </div>
   </nav>
@@ -517,6 +605,7 @@
       <div class="hero-grid">
         <div class="hero-card">
           <span class="eyebrow">Portfolio</span>
+          <span class="live-badge" title="2026 應屆畢業，求職中"><span class="live-dot"></span>Open to work · 求職中</span>
           <h1>賴皇菘</h1>
           <p class="subtitle">IoT / Embedded / Python / AI Automation</p>
           <p class="intro">
@@ -559,13 +648,17 @@
       <h2 class="section-title">關於我</h2>
       <div class="about-box">
         <p>
-          我是賴皇菘，資訊工程系畢業生，專長 IoT 系統整合、嵌入式開發與 AI 自動化流程建置。
-          熟悉 Raspberry Pi、Flask REST API、Flutter、GitHub Actions、LLM API 整合，
-          能獨立完成從硬體控制、資料流程、排程部署到使用者介面的端到端專案。
+          來自台中烏日，家族經營塑膠射出工廠，從小在製造業現場長大，
+          習慣把「能跑起來、穩定不出包」當作做事的最低標準。
         </p>
         <p>
-          擅長將硬體、後端與行動 App 串成可運作的完整系統，
-          並透過自動化流程與工具提升開發效率。
+          做專案喜歡走完整條路：從硬體（Raspberry Pi、感測器）到後端（Flask / Next.js）、
+          排程（GitHub Actions / Vercel Cron）、AI 整合（Gemini / LLM API）、再到 UI。
+          相比鑽研單一框架，我更在意「整個系統能否每天自己跑、出錯能不能自動通知」。
+        </p>
+        <p>
+          目前持續自學日文（目標 N3）與再生能源安全 / 嵌入式系統相關知識，
+          求職方向以 IoT、嵌入式、AI 自動化、安規測試（TÜV/半導體）為主。
         </p>
       </div>
     </section>
@@ -664,6 +757,7 @@
             <h3>IoT 寵物陪伴系統</h3>
             <span class="badge">IoT Project</span>
           </div>
+          <span class="static-badge">🎓 系上專題作品</span>
           <div class="stack">Raspberry Pi / Flask / Flutter / GPIO</div>
           <p class="project-desc">
             設計智慧寵物陪伴系統，整合感測器、馬達、Flask REST API 與 Flutter APP。
@@ -682,6 +776,7 @@
             <h3>跟團訂單自動化系統</h3>
             <span class="badge">Automation</span>
           </div>
+          <span class="static-badge">🤝 實際使用中（自己跟團團主）</span>
           <div class="stack">Google Apps Script / Sheets / LINE API</div>
           <p class="project-desc">
             開發 Google Apps Script 自動化表單觸發器，實現訂單資料搬移與 LINE 推播。
@@ -699,6 +794,7 @@
             <h3>LINE 主題設計 — NEKO.fly&mi</h3>
             <span class="badge">Design</span>
           </div>
+          <span class="static-badge">✅ 已上架 LINE Store</span>
           <p class="project-desc">
             獨立設計 25+ 張圖檔的完整 LINE 主題，通過審核上架。
           </p>
@@ -714,6 +810,7 @@
             <h3>泰武漂鳥咖啡電商網站</h3>
             <span class="badge">E-commerce</span>
           </div>
+          <span class="static-badge">🛒 校外合作專案</span>
           <p class="project-desc">
             品牌電商網站建置，負責網頁排版、視覺設計與金流串接。
           </p>
@@ -927,11 +1024,33 @@
     </section>
 
     <footer>
-      <p>© 2025 Lai Huang-Song</p>
+      <p>© <span id="footer-year">2026</span> Lai Huang-Song</p>
     </footer>
   </div>
 
   <script>
+    // footer 年份動態
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+    // 主題切換
+    (function(){
+      var btn=document.getElementById('theme-toggle');
+      var root=document.documentElement;
+      var sync=function(){
+        var t=root.dataset.theme||'dark';
+        btn.textContent=t==='dark'?'🌙':'☀️';
+        btn.title=t==='dark'?'切換淺色':'切換深色';
+        btn.setAttribute('aria-label',t==='dark'?'切換淺色模式':'切換深色模式');
+      };
+      sync();
+      btn.addEventListener('click',function(){
+        var next=(root.dataset.theme||'dark')==='dark'?'light':'dark';
+        root.dataset.theme=next;
+        try{localStorage.setItem('portfolio-theme',next);}catch(e){}
+        sync();
+      });
+    })();
+
     // 每日同步：從 data/status.json 讀各專案最新更新日期填入卡片
     fetch('data/status.json?t=' + Date.now())
       .then(r => r.ok ? r.json() : null)
