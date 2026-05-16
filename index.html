@@ -306,6 +306,7 @@
 
     .section{
       padding:34px 0;
+      scroll-margin-top:72px;
     }
 
     .section-title{
@@ -580,6 +581,33 @@
       .gallery-image-wrap img{
         height:260px;
       }
+    }
+
+    /* 列印（HR / 招募方輸出 PDF 用） */
+    @media print{
+      :root{
+        --bg:#fff;--card:#fff;--card-hover:#fff;--text:#111;--muted:#444;
+        --primary:#0369a1;--primary-dark:#0c4a6e;--border:#ccc;--shadow:none;
+        --grad-1:transparent;--grad-2:transparent;--nav-bg:#fff;--nav-border:#ccc;
+        --card-bg:#fff;--card-bg-strong:#fff;--skills-bg:#f7f7f7;
+        --eyebrow-bg:#e0f2fe;--brand:#000;--hover-link:#0369a1;--project-desc:#222;
+      }
+      body{background:#fff;color:#111;}
+      .nav,.theme-toggle,#theme-toggle{display:none !important;}
+      .hero{padding:20px 0 12px;}
+      .hero-grid{grid-template-columns:1fr;gap:14px;}
+      .live-badge,.static-badge,.badge{box-shadow:none !important;}
+      .card,.hero-card,.side-card,.about-box,.skills-panel,.contact-box,.gallery-card{
+        page-break-inside:avoid;break-inside:avoid;box-shadow:none;border:1px solid #ddd;
+      }
+      .section{padding:14px 0;scroll-margin-top:0;}
+      .section-title{font-size:20px;margin-bottom:10px;}
+      h1{font-size:28px;}
+      a{color:#0369a1;text-decoration:underline;}
+      a[href]:after{content:" (" attr(href) ")";font-size:.8em;color:#666;word-break:break-all;}
+      a[href^="#"]:after,a[href^="mailto:"]:after,a[href^="tel:"]:after{content:"";}
+      .project-links a{display:inline-block;margin-right:8px;}
+      footer{border-top:1px solid #ccc;padding-top:8px;margin-top:18px;}
     }
   </style>
 </head>
@@ -1011,13 +1039,13 @@
       <div class="contact-box">
         <div class="contact-list">
           <div class="contact-item">
-            Email：<a href="mailto:lynnn25004@gmail.com">lynnn25004@gmail.com</a>
+            Email：<a href="mailto:lynnn25004@gmail.com" aria-label="寄信給賴皇菘 lynnn25004@gmail.com">lynnn25004@gmail.com</a>
           </div>
           <div class="contact-item">
-            Phone：<a href="tel:0926035605">0926035605</a>
+            Phone：<a href="tel:0926035605" aria-label="撥打電話 0926035605">0926035605</a>
           </div>
           <div class="contact-item">
-            GitHub：<a href="https://github.com/lynn25004" target="_blank" rel="noopener noreferrer">github.com/lynn25004</a>
+            GitHub：<a href="https://github.com/lynn25004" target="_blank" rel="noopener noreferrer" aria-label="開啟 GitHub 個人頁（新分頁）">github.com/lynn25004</a>
           </div>
         </div>
       </div>
