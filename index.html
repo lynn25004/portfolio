@@ -4,13 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>賴皇菘 | Portfolio</title>
-  <meta name="description" content="賴皇菘的工程師作品集，展示 IoT、嵌入式、Python、Flutter、Google Apps Script 等專案經驗、證照與獎狀。">
+  <meta name="description" content="賴皇菘的工程師作品集：IoT／嵌入式、Python 自動化、全端開發與設計程式化生成。收錄連續運行上百天的自動化系統、企業實際導入的對帳系統、展覽視覺生成系統，以及證照與獎狀。">
   <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
   <link rel="icon" type="image/svg+xml" href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="%230f172a"/><text x="50%25" y="55%25" font-size="36" text-anchor="middle" dominant-baseline="middle" font-family="Arial,sans-serif" font-weight="700" fill="%2338bdf8">L</text></svg>'>
   <meta property="og:title" content="賴皇菘 | Portfolio">
-  <meta property="og:description" content="IoT / Embedded / Python / AI Automation — 工程師作品集">
+  <meta property="og:description" content="會自己每天跑的系統 · 從硬體到前端做完整條路 — IoT / Python 自動化 / 全端 / AI 整合 / 設計程式化生成">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lynn25004.github.io/portfolio/">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:image" content="https://lynn25004.github.io/portfolio/images/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="賴皇菘作品集封面：IoT／嵌入式、Python 自動化、全端開發、AI 整合、設計程式化生成">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="賴皇菘 | Portfolio">
+  <meta name="twitter:description" content="會自己每天跑的系統 · 從硬體到前端做完整條路">
+  <meta name="twitter:image" content="https://lynn25004.github.io/portfolio/images/og.jpg">
   <script>
     // 早期套用主題，避免閃白
     (function(){
@@ -460,6 +470,78 @@
       .project-shots img{height:150px;}
     }
 
+    .zoomable{
+      cursor:zoom-in;
+    }
+
+    .lightbox{
+      position:fixed;
+      inset:0;
+      z-index:2000;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      background:rgba(8,12,22,.88);
+      backdrop-filter:blur(4px);
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .18s ease;
+    }
+
+    .lightbox[data-open="true"]{
+      opacity:1;
+      pointer-events:auto;
+    }
+
+    .lightbox-figure{
+      margin:0;
+      max-width:min(1000px,100%);
+      max-height:100%;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      align-items:center;
+    }
+
+    .lightbox-figure img{
+      max-height:78vh;
+      width:auto;
+      border-radius:14px;
+      box-shadow:0 18px 50px rgba(0,0,0,.5);
+      background:#0b1220;
+    }
+
+    .lightbox-caption{
+      color:#e2e8f0;
+      font-size:14px;
+      line-height:1.6;
+      text-align:center;
+      max-width:70ch;
+    }
+
+    .lightbox-close{
+      position:absolute;
+      top:16px;
+      right:18px;
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      border:1px solid rgba(226,232,240,.28);
+      background:rgba(15,23,42,.7);
+      color:#e2e8f0;
+      font-size:20px;
+      line-height:1;
+      cursor:pointer;
+      transition:transform .18s ease,border-color .18s ease;
+    }
+
+    .lightbox-close:hover,
+    .lightbox-close:focus-visible{
+      border-color:var(--primary);
+      transform:scale(1.06);
+    }
+
     .project-links{
       margin-top:14px;
       display:flex;
@@ -628,7 +710,7 @@
         --eyebrow-bg:#e0f2fe;--brand:#000;--hover-link:#0369a1;--project-desc:#222;
       }
       body{background:#fff;color:#111;}
-      .nav,.theme-toggle,#theme-toggle{display:none !important;}
+      .nav,.theme-toggle,#theme-toggle,.lightbox{display:none !important;}
       .hero{padding:20px 0 12px;}
       .hero-grid{grid-template-columns:1fr;gap:14px;}
       .live-badge,.static-badge,.badge{box-shadow:none !important;}
@@ -750,10 +832,10 @@
           <div class="stack">Node.js / Playwright / HTML Canvas / SVG / 向量 PDF</div>
           <div class="project-shots">
             <a href="images/clinic-keyvisual.jpg" target="_blank" rel="noopener noreferrer">
-              <img src="images/clinic-keyvisual.jpg" alt="展覽主視覺：程式生成的網點半調拍立得桌面場景" loading="lazy">
+              <img src="images/clinic-keyvisual.jpg" alt="展覽主視覺：程式生成的網點半調拍立得，三角構圖" loading="lazy">
             </a>
             <a href="images/clinic-variants.jpg" target="_blank" rel="noopener noreferrer">
-              <img src="images/clinic-variants.jpg" alt="同一套視覺語彙下的另一種構圖變體" loading="lazy">
+              <img src="images/clinic-variants.jpg" alt="同一套視覺語彙下的另一種構圖：三張垂直落下的階梯排法" loading="lazy">
             </a>
             <a href="images/clinic-card-01.jpg" target="_blank" rel="noopener noreferrer">
               <img src="images/clinic-card-01.jpg" alt="程式排版輸出的處方箋卡片之一" loading="lazy">
@@ -1037,7 +1119,7 @@
       <div class="gallery-grid">
         <div class="gallery-card">
           <div class="gallery-image-wrap">
-            <img src="images/image13.jpeg" alt="Google Gemini Certified Educator 證照">
+            <img src="images/image13.jpeg" alt="Google Gemini Certified Educator 證照" loading="lazy" decoding="async">
           </div>
           <div class="gallery-body">
             <div class="gallery-title">Google Gemini Certified Educator</div>
@@ -1048,7 +1130,7 @@
 
         <div class="gallery-card">
           <div class="gallery-image-wrap">
-            <img src="images/image14.jpg" alt="電腦硬體裝修丙級技術士證">
+            <img src="images/image14.jpg" alt="電腦硬體裝修丙級技術士證" loading="lazy" decoding="async">
           </div>
           <div class="gallery-body">
             <div class="gallery-title">電腦硬體裝修丙級</div>
@@ -1059,7 +1141,7 @@
 
         <div class="gallery-card">
           <div class="gallery-image-wrap">
-            <img src="images/image15.jpg" alt="工業電子丙級技術士證">
+            <img src="images/image15.jpg" alt="工業電子丙級技術士證" loading="lazy" decoding="async">
           </div>
           <div class="gallery-body">
             <div class="gallery-title">工業電子丙級</div>
@@ -1070,7 +1152,7 @@
 
         <div class="gallery-card">
           <div class="gallery-image-wrap">
-            <img src="images/image16.jpeg" alt="TQC Python 證照">
+            <img src="images/image16.jpeg" alt="TQC Python 證照" loading="lazy" decoding="async">
           </div>
           <div class="gallery-body">
             <div class="gallery-title">TQC Python 程式設計</div>
@@ -1088,7 +1170,7 @@
       <div class="gallery-grid">
         <div class="gallery-card">
           <div class="gallery-image-wrap">
-            <img src="images/image17.jpg" alt="台中市第三信用合作社品學兼優獎學金 114 年">
+            <img src="images/image17.jpg" alt="台中市第三信用合作社品學兼優獎學金 114 年" loading="lazy" decoding="async">
           </div>
           <div class="gallery-body">
             <div class="gallery-title">品學兼優獎學金（114 年度）</div>
@@ -1099,7 +1181,7 @@
 
         <div class="gallery-card">
           <div class="gallery-image-wrap">
-            <img src="images/image18.jpg" alt="台中市第三信用合作社品學兼優獎學金 113 年">
+            <img src="images/image18.jpg" alt="台中市第三信用合作社品學兼優獎學金 113 年" loading="lazy" decoding="async">
           </div>
           <div class="gallery-body">
             <div class="gallery-title">品學兼優獎學金（113 年度）</div>
@@ -1110,7 +1192,7 @@
 
         <div class="gallery-card">
           <div class="gallery-image-wrap">
-            <img src="images/image19.jpg" alt="公私立大學校院優秀學生獎狀 110 年">
+            <img src="images/image19.jpg" alt="公私立大學校院優秀學生獎狀 110 年" loading="lazy" decoding="async">
           </div>
           <div class="gallery-body">
             <div class="gallery-title">公私立大學校院優秀學生獎狀（110 年度）</div>
@@ -1121,7 +1203,7 @@
 
         <div class="gallery-card">
           <div class="gallery-image-wrap">
-            <img src="images/image20.jpg" alt="公私立大學校院優秀學生獎狀 111 年">
+            <img src="images/image20.jpg" alt="公私立大學校院優秀學生獎狀 111 年" loading="lazy" decoding="async">
           </div>
           <div class="gallery-body">
             <div class="gallery-title">公私立大學校院優秀學生獎狀（111 年度）</div>
@@ -1132,7 +1214,7 @@
 
         <div class="gallery-card">
           <div class="gallery-image-wrap">
-            <img src="images/image21.jpg" alt="朝陽科技大學 113 學年度第 1 學期學行成績全班第 1 名">
+            <img src="images/image21.jpg" alt="朝陽科技大學 113 學年度第 1 學期學行成績全班第 1 名" loading="lazy" decoding="async">
           </div>
           <div class="gallery-body">
             <div class="gallery-title">113 學年度第 1 學期 全班第 1 名</div>
@@ -1143,7 +1225,7 @@
 
         <div class="gallery-card">
           <div class="gallery-image-wrap">
-            <img src="images/image22.jpg" alt="朝陽科技大學 112 學年度第 1 學期學行成績全班第 2 名">
+            <img src="images/image22.jpg" alt="朝陽科技大學 112 學年度第 1 學期學行成績全班第 2 名" loading="lazy" decoding="async">
           </div>
           <div class="gallery-body">
             <div class="gallery-title">112 學年度第 1 學期 全班第 2 名</div>
@@ -1154,7 +1236,7 @@
 
         <div class="gallery-card">
           <div class="gallery-image-wrap">
-            <img src="images/image23.jpg" alt="朝陽科技大學 112 學年度第 2 學期學行成績全班第 3 名">
+            <img src="images/image23.jpg" alt="朝陽科技大學 112 學年度第 2 學期學行成績全班第 3 名" loading="lazy" decoding="async">
           </div>
           <div class="gallery-body">
             <div class="gallery-title">112 學年度第 2 學期 全班第 3 名</div>
@@ -1185,6 +1267,14 @@
     <footer>
       <p>© <span id="footer-year">2026</span> Lai Huang-Song</p>
     </footer>
+  </div>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="圖片放大檢視" data-open="false">
+    <button type="button" class="lightbox-close" id="lightbox-close" aria-label="關閉放大檢視">✕</button>
+    <figure class="lightbox-figure">
+      <img id="lightbox-img" src="" alt="">
+      <figcaption class="lightbox-caption" id="lightbox-caption"></figcaption>
+    </figure>
   </div>
 
   <script>
@@ -1226,6 +1316,62 @@
       .catch(() => {
         document.querySelectorAll('.last-update').forEach(el => el.textContent = '—');
       });
+
+    // 圖片放大檢視（沒有 JS 時，專案縮圖仍可用連結另開原圖）
+    (function(){
+      var box=document.getElementById('lightbox');
+      var img=document.getElementById('lightbox-img');
+      var cap=document.getElementById('lightbox-caption');
+      var closeBtn=document.getElementById('lightbox-close');
+      var lastFocus=null;
+
+      function open(src,alt){
+        lastFocus=document.activeElement;
+        img.src=src;
+        img.alt=alt||'';
+        cap.textContent=alt||'';
+        box.dataset.open='true';
+        document.body.style.overflow='hidden';
+        closeBtn.focus();
+      }
+      function close(){
+        box.dataset.open='false';
+        document.body.style.overflow='';
+        img.src='';
+        if(lastFocus && lastFocus.focus) lastFocus.focus();
+      }
+
+      // 專案縮圖：<a href="原圖"><img alt></a>
+      document.querySelectorAll('.project-shots a').forEach(function(a){
+        a.classList.add('zoomable');
+        a.addEventListener('click',function(e){
+          if(e.metaKey||e.ctrlKey||e.shiftKey||e.button!==0) return; // 讓使用者仍能另開分頁
+          e.preventDefault();
+          var inner=a.querySelector('img');
+          open(a.getAttribute('href'), inner?inner.alt:'');
+        });
+      });
+
+      // 證照 / 獎狀圖：本來是純 <img>，補成可鍵盤操作的按鈕
+      document.querySelectorAll('.gallery-image-wrap img').forEach(function(el){
+        el.classList.add('zoomable');
+        el.setAttribute('role','button');
+        el.setAttribute('tabindex','0');
+        el.setAttribute('aria-label','放大檢視：'+(el.alt||'圖片'));
+        el.addEventListener('click',function(){ open(el.currentSrc||el.src, el.alt); });
+        el.addEventListener('keydown',function(e){
+          if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(el.currentSrc||el.src, el.alt); }
+        });
+      });
+
+      closeBtn.addEventListener('click',close);
+      box.addEventListener('click',function(e){ if(e.target===box) close(); });
+      document.addEventListener('keydown',function(e){
+        if(box.dataset.open!=='true') return;
+        if(e.key==='Escape') close();
+        if(e.key==='Tab'){ e.preventDefault(); closeBtn.focus(); } // 焦點鎖在對話框內
+      });
+    })();
   </script>
 </body>
 </html>
