@@ -425,6 +425,41 @@
       margin-bottom:10px;
     }
 
+    .project-shots{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+      gap:10px;
+      margin:4px 0 14px;
+    }
+
+    .project-shots a{
+      display:block;
+      border-radius:10px;
+      overflow:hidden;
+      border:1px solid var(--border);
+      background:var(--card-bg);
+      line-height:0;
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+
+    .project-shots a:hover,
+    .project-shots a:focus-visible{
+      transform:translateY(-2px);
+      box-shadow:0 6px 18px rgba(0,0,0,.18);
+    }
+
+    .project-shots img{
+      width:100%;
+      height:190px;
+      object-fit:cover;
+      object-position:top center;
+      display:block;
+    }
+
+    @media (max-width:600px){
+      .project-shots img{height:150px;}
+    }
+
     .project-links{
       margin-top:14px;
       display:flex;
@@ -685,6 +720,11 @@
           相比鑽研單一框架，我更在意「整個系統能否每天自己跑、出錯能不能自動通知」。
         </p>
         <p>
+          最近也把同樣的思路用在設計工作上：與展覽方合作時，我把「手工排 13 張卡片」變成
+          改一份資料就能重出 PNG、向量 PDF、SVG、HTML 四種格式的生成系統，
+          並用程式繪製與合成完成主視覺。對我來說，設計交付一樣要「可重跑、可修改、不用求人重做」。
+        </p>
+        <p>
           求職方向上，除了 IoT、嵌入式、AI 自動化等工程職，
           我也積極尋找一般行政、營運支援與專案協調類的職位。
           在製造業現場長大，加上實際幫家裡工廠與合作對象導入過庫存、訂單、報表的自動化，
@@ -701,6 +741,47 @@
       <h2 class="section-title">專案</h2>
 
       <div class="project-grid">
+        <div class="card">
+          <div class="project-header">
+            <h3>展覽視覺卡片程式化生成系統</h3>
+            <span class="badge">Design Automation</span>
+          </div>
+          <span class="static-badge">🏛️ 實際用於展覽：情緒診療室 — 閱讀處方總覽展</span>
+          <div class="stack">Node.js / Playwright / HTML Canvas / SVG / 向量 PDF</div>
+          <div class="project-shots">
+            <a href="images/clinic-keyvisual.jpg" target="_blank" rel="noopener noreferrer">
+              <img src="images/clinic-keyvisual.jpg" alt="展覽主視覺：程式生成的網點半調拍立得桌面場景" loading="lazy">
+            </a>
+            <a href="images/clinic-variants.jpg" target="_blank" rel="noopener noreferrer">
+              <img src="images/clinic-variants.jpg" alt="同一套視覺語彙下的另一種構圖變體" loading="lazy">
+            </a>
+            <a href="images/clinic-card-01.jpg" target="_blank" rel="noopener noreferrer">
+              <img src="images/clinic-card-01.jpg" alt="程式排版輸出的處方箋卡片之一" loading="lazy">
+            </a>
+            <a href="images/clinic-card-07.jpg" target="_blank" rel="noopener noreferrer">
+              <img src="images/clinic-card-07.jpg" alt="處方箋卡片：不同插圖與配色的另一張" loading="lazy">
+            </a>
+          </div>
+          <p class="project-desc">
+            展覽方提供文案與設計方向，我負責把它變成「改資料就能重出全部成品」的生成系統：
+            13 張處方箋卡片由一份資料源驅動，一鍵輸出 PNG（社群／列印）、可編輯的向量 PDF、
+            可拖進 Figma 續修的 SVG，以及可直接改樣式的 HTML 原始版型；另附 A4 雙面落版（一張紙兩張 A5）。
+          </p>
+          <p class="project-desc">
+            技術亮點：以 Playwright 驅動無頭瀏覽器渲染 Canvas／HTML 版型再截圖輸出，四種格式共用同一份排版邏輯；
+            主視覺全程用程式繪製與合成——照片轉灰階拉曲線 → 45° 圓點網屏半調（halftone）→ 拍立得邊框與陰影 →
+            復古桌面場景疊合 → 暖褐×墨青統一調色，並做出 9 種構圖變體讓展覽方挑選；
+            內文長度不一時自動均分段落高度、預先算好斷行，避免文字溢出或截斷。
+          </p>
+          <p class="project-desc">
+            交付上刻意讓非工程師也能自己重跑：一個 <code>.bat</code> 雙擊執行（首次自動安裝依賴）、
+            附中文操作說明與 Figma 匯入指引；素材全部使用 Pexels 免費可商用授權並在程式內註記來源 ID。
+          </p>
+          <p class="project-desc" style="color:var(--muted);font-size:13px;">
+            ※ 文案與書單內容為展覽方所有，此處僅展示我負責的視覺生成成果；生成腳本含展覽文案，故不公開原始碼。
+          </p>
+        </div>
+
         <div class="card">
           <div class="project-header">
             <h3>食品物流庫存對帳自動化系統</h3>
@@ -736,7 +817,8 @@
           <p class="project-desc">
             全自動語言學習系統，每日 09:00 由 Gemini 生成 10 英文 + 10 日文單字與文法，
             透過 LINE Messaging API 推播；23:00 睡前複習 + 間隔重複（1/3/7 天前單字），
-            週六附本週總結。
+            週末附本週總結。2026 年 4 月上線後連續運行至今（100+ 天、累積 170+ 堂課），
+            6 月起調整為每日不休（含週日）。
           </p>
           <p class="project-desc">
             技術亮點：零第三方依賴（純 Python stdlib）、多語 Prompt Engineering、
@@ -757,7 +839,8 @@
           <div class="stack">Python / GitHub Actions / Gmail IMAP / Gemini API / Telegram Bot</div>
           <p class="project-desc">
             每日 08:30 自動彙整個人資訊推播到 Telegram：Gmail 求職信過濾（面試/錄取關鍵字）、
-            台中當日天氣（Open-Meteo）、Gemini 生成的個人化激勵句。
+            台中當日天氣（Open-Meteo、含 UV 與體感溫度、降雨機率超標提醒帶傘）、
+            Gemini 生成的個人化激勵句。上線後連續 100 天無中斷推播。
           </p>
           <p class="project-desc">
             技術亮點：IMAP + App Password 安全存取、多 API 並行編排、
@@ -803,7 +886,9 @@
           </p>
           <p class="project-desc">
             技術亮點：多 CORS proxy fallback 容錯、firstSeenAt 排序避免再販誤判新品、
-            自動標畢業成員、GitHub Actions 每日 08:00 自動更新成員與商品資料。
+            自動標畢業成員、GitHub Actions 每日 08:00 自動更新成員與商品資料，
+            前端即時查 Holodex 直播狀態並每 90 秒自動刷新。
+            目前資料涵蓋 198 位成員、4,600+ 件在架商品，每日自動維護。
           </p>
           <div class="project-links">
             <a href="https://github.com/lynn25004/nijisanji-oshi" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -887,6 +972,7 @@
           <h4>程式語言</h4>
           <div class="skills">
             <span>Python</span>
+            <span>JavaScript / TypeScript</span>
             <span>C/C++</span>
             <span>Dart</span>
           </div>
@@ -897,6 +983,9 @@
           <div class="skills">
             <span>Flask</span>
             <span>Flutter</span>
+            <span>Next.js</span>
+            <span>Node.js</span>
+            <span>Playwright</span>
             <span>Google Apps Script</span>
             <span>Git / GitHub</span>
             <span>pytest</span>
@@ -925,6 +1014,17 @@
             <span>Telegram Bot API</span>
             <span>Prompt Engineering</span>
             <span>Claude Code</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h4>設計與版面產出</h4>
+          <div class="skills">
+            <span>HTML Canvas 程式繪圖</span>
+            <span>SVG（可編輯向量）</span>
+            <span>向量 PDF 輸出</span>
+            <span>列印落版（A4／A5）</span>
+            <span>Figma 交付</span>
           </div>
         </div>
       </div>
