@@ -314,6 +314,62 @@
       word-break:break-word;
     }
 
+    .profile-photo{
+      display:block;
+      width:100%;
+      max-width:180px;
+      margin:0 auto 18px;
+      aspect-ratio:3 / 4;
+      object-fit:cover;
+      border-radius:14px;
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+    }
+
+    .exp-list{
+      display:grid;
+      gap:14px;
+    }
+
+    .exp-item{
+      padding:18px 20px;
+      border-radius:14px;
+      background:var(--skills-bg);
+      border:1px solid var(--border);
+    }
+
+    .exp-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:baseline;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .exp-role{
+      font-size:17px;
+      font-weight:700;
+      color:var(--brand);
+    }
+
+    .exp-when{
+      font-size:14px;
+      color:var(--muted);
+      white-space:nowrap;
+    }
+
+    .exp-org{
+      margin-top:2px;
+      font-size:14px;
+      color:var(--muted);
+    }
+
+    .exp-desc{
+      margin-top:10px;
+      color:var(--project-desc);
+      font-size:15px;
+    }
+
     .section{
       padding:34px 0;
       scroll-margin-top:72px;
@@ -331,7 +387,7 @@
     }
 
     .about-box p{
-      color:#dbe6f3;
+      color:var(--project-desc);
       margin-bottom:16px;
     }
 
@@ -735,6 +791,7 @@
       <div class="brand">賴皇菘 Portfolio</div>
       <div class="nav-links">
         <a href="#about">關於我</a>
+        <a href="#experience">經歷</a>
         <a href="#projects">專案</a>
         <a href="#skills">技術</a>
         <a href="#certifications">證照</a>
@@ -760,12 +817,14 @@
           </p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#projects">查看專案</a>
+            <a class="btn btn-secondary" href="files/resume-general.pdf" target="_blank" rel="noopener noreferrer">履歷 PDF</a>
             <a class="btn btn-secondary" href="files/autobiography-zh.pdf" target="_blank" rel="noopener noreferrer">自傳 PDF</a>
             <a class="btn btn-secondary" href="https://github.com/lynn25004" target="_blank" rel="noopener noreferrer">GitHub</a>
           </div>
         </div>
 
         <div class="side-card">
+          <img class="profile-photo" src="images/profile.jpg" alt="賴皇菘證件照" width="180" height="240">
           <div class="info-list">
             <div class="info-item">
               <span class="info-label">專長</span>
@@ -817,6 +876,68 @@
           不論是工程還是行政，我看重的是同一件事：把事情做得穩定、流程交代清楚、可以被信任。
           目前也持續自學日文（目標 N3）。
         </p>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <h2 class="section-title">經歷</h2>
+      <p class="section-desc">從製造現場、倉儲到測試實驗室與系辦行政，讓我同時熟悉工程驗證與實際的作業流程。</p>
+
+      <div class="exp-list">
+        <div class="exp-item">
+          <div class="exp-head">
+            <div>
+              <div class="exp-role">倉儲人員</div>
+              <div class="exp-org">巧舜企業有限公司 · 台中市</div>
+            </div>
+            <div class="exp-when">2026/5 – 2026/6</div>
+          </div>
+          <p class="exp-desc">
+            負責日常進出貨、揀貨與庫存盤點。任職期間主動把庫存對帳自動化：以 Google Apps Script 讓試算表自動扣帳並加上差異驗證與修補機制，
+            另把散在 LINE 群組裡的訂單訊息解析成可查詢的訂單檔案庫（訂單編號配對率 99.7%），減少人工對帳的漏登與錯帳。
+          </p>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-head">
+            <div>
+              <div class="exp-role">產品測試 實習生／工讀生</div>
+              <div class="exp-org">百佳泰股份有限公司 中科分公司 · 南投縣</div>
+            </div>
+            <div class="exp-when">2025/2 – 2025/6</div>
+          </div>
+          <p class="exp-desc">
+            負責滑鼠、筆電與各類週邊設備的功能與相容性測試，涵蓋線材（USB-C、DP、Splitter）與跨平台作業系統（Windows／macOS／Chrome OS），
+            並獨立以英文撰寫 issue、分析問題並提出回報。
+          </p>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-head">
+            <div>
+              <div class="exp-role">行政庶務 實習生／工讀生</div>
+              <div class="exp-org">朝陽科技大學 資訊工程學系 系辦公室 · 台中市</div>
+            </div>
+            <div class="exp-when">2022/10 – 2022/12</div>
+          </div>
+          <p class="exp-desc">
+            協助老師與助教處理行政庶務：公文遞送、器材借用、教室巡視、送信，並支援系上活動的海報設計、現場支援與攝影紀錄。
+          </p>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-head">
+            <div>
+              <div class="exp-role">技術人員（機械操作）</div>
+              <div class="exp-org">進昕塑膠有限公司 · 台中市烏日區</div>
+            </div>
+            <div class="exp-when">2021/7 – 2023/9</div>
+          </div>
+          <p class="exp-desc">
+            負責塑膠射出成型設備的操作與日常維護，執行基本故障排除並協助模具調整與製程參數優化，
+            熟悉整體生產流程與品質控管標準。
+          </p>
+        </div>
       </div>
     </section>
 
