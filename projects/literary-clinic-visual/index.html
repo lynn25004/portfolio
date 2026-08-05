@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>展覽視覺程式化生成系統｜Lynn Portfolio</title>
+  <meta name="description" content="Lynn 為文學處方箋展覽製作的程式化視覺生成系統，可由資料源輸出 PNG、PDF、SVG 與 HTML 版型。">
+  <style>
+    :root { color-scheme: light; --ink:#18202a; --muted:#5b6573; --line:#d8dee7; --panel:#f7f9fb; --accent:#0f766e; --accent-2:#b45309; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: "Noto Sans TC", "Microsoft JhengHei", system-ui, sans-serif; color:var(--ink); background:#fff; line-height:1.75; }
+    main { max-width: 1080px; margin: 0 auto; padding: 40px 22px 64px; }
+    nav { margin-bottom: 32px; }
+    a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    .back { color: var(--muted); font-size: 14px; }
+    .hero { border-bottom: 1px solid var(--line); padding-bottom: 28px; margin-bottom: 28px; }
+    .eyebrow { color: var(--accent-2); font-size: 13px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+    h1 { margin: 8px 0 12px; font-size: clamp(32px, 5vw, 52px); line-height:1.08; letter-spacing:0; }
+    .lead { max-width: 800px; font-size: 18px; color: var(--muted); margin: 0; }
+    .meta { display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
+    .meta span { border:1px solid var(--line); background:var(--panel); border-radius: 6px; padding: 6px 10px; font-size: 14px; }
+    section { margin-top: 34px; }
+    h2 { font-size: 22px; margin: 0 0 12px; }
+    ul { padding-left: 1.2em; }
+    li { margin: 6px 0; }
+    .gallery { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:12px; margin-top:16px; }
+    .gallery img { width:100%; aspect-ratio: 4 / 3; object-fit: cover; border:1px solid var(--line); border-radius:8px; background:var(--panel); }
+    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap:14px; }
+    .box { border:1px solid var(--line); border-radius:8px; padding:16px; background:var(--panel); }
+    .box strong { display:block; margin-bottom: 4px; }
+    .note { color:var(--muted); font-size:14px; }
+  </style>
+</head>
+<body>
+  <main>
+    <nav><a class="back" href="../../index.html">返回作品集</a></nav>
+
+    <header class="hero">
+      <div class="eyebrow">Exhibition Visual / Design Automation</div>
+      <h1>展覽視覺程式化生成系統</h1>
+      <p class="lead">為「情緒診療室 — 閱讀處方總覽展」製作的視覺生成流程，把文案、版型、圖片處理與輸出規格整理成可一鍵重跑的系統。</p>
+      <div class="meta">
+        <span>Node.js</span>
+        <span>Playwright</span>
+        <span>HTML Canvas</span>
+        <span>SVG / PDF / PNG</span>
+        <span>Figma-ready Assets</span>
+      </div>
+    </header>
+
+    <section>
+      <h2>成果預覽</h2>
+      <div class="gallery">
+        <a href="../../images/clinic-keyvisual.jpg" target="_blank" rel="noopener noreferrer"><img src="../../images/clinic-keyvisual.jpg" alt="展覽主視覺"></a>
+        <a href="../../images/clinic-variants.jpg" target="_blank" rel="noopener noreferrer"><img src="../../images/clinic-variants.jpg" alt="主視覺構圖變體"></a>
+        <a href="../../images/clinic-card-01.jpg" target="_blank" rel="noopener noreferrer"><img src="../../images/clinic-card-01.jpg" alt="處方箋卡片 01"></a>
+        <a href="../../images/clinic-card-07.jpg" target="_blank" rel="noopener noreferrer"><img src="../../images/clinic-card-07.jpg" alt="處方箋卡片 07"></a>
+      </div>
+      <p class="note">文案與書單內容為展覽方所有，此頁展示我負責的視覺生成成果；生成腳本含展覽內容，因此不公開原始碼。</p>
+    </section>
+
+    <section>
+      <h2>我做了什麼</h2>
+      <div class="grid">
+        <div class="box"><strong>資料驅動版型</strong>13 張處方箋卡片由同一份資料源產生，修改資料即可重新輸出全部成品。</div>
+        <div class="box"><strong>多格式輸出</strong>一鍵產出社群／列印 PNG、可編輯向量 PDF、SVG 與 HTML 原始版型。</div>
+        <div class="box"><strong>非工程師交付</strong>提供雙擊執行的批次檔、中文操作說明與 Figma 匯入指引。</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>技術重點</h2>
+      <ul>
+        <li>以 Playwright 驅動無頭瀏覽器渲染 Canvas／HTML 版型，再依用途輸出不同格式。</li>
+        <li>用程式完成照片灰階、曲線調整、45° 圓點網屏半調、拍立得邊框、陰影與復古桌面合成。</li>
+        <li>處理長短不一的內文，自動計算段落高度與斷行，降低文字溢出或截斷風險。</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

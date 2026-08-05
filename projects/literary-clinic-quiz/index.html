@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="文學診療室心事快速檢測，以台灣文學為藥櫃，透過十二道問診替此刻的你留下一張閱讀處方簽。"
+    />
+    <title>文學診療室｜心事快速檢測</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+    <meta name="theme-color" content="#1f332d" />
+    <link rel="stylesheet" href="./styles.css?v=20260730-question-overhaul" />
+  </head>
+  <body>
+    <canvas id="atmosphere" aria-hidden="true"></canvas>
+
+    <section class="entry-screen" id="entry-screen" aria-labelledby="entry-title">
+      <div class="entry-noise" aria-hidden="true"></div>
+      <div class="entry-orbit" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="entry-copy">
+        <p class="entry-prelude">如果有一句話正在等你</p>
+        <p class="entry-touch">請輕觸螢幕</p>
+        <h1 id="entry-title">文學診療室</h1>
+        <p class="entry-line">把說不清的地方，暫時交給文字。</p>
+        <button type="button" id="enter-button" class="entry-button">推門入內</button>
+        <p class="entry-note">十二道問診，從十二張台灣文學處方裡，替你取出此刻最靠近的一帖藥。</p>
+      </div>
+    </section>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="回到首頁">
+        <span class="brand-mark"></span>
+        <span>文學診療室</span>
+      </a>
+      <nav aria-label="頁面導覽">
+        <a href="#quiz">問診</a>
+        <a href="#result">處方</a>
+        <button type="button" id="sound-button" aria-pressed="false">BGM：開啟中</button>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero reveal" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">A Quiet Literary Clinic</p>
+          <h1 id="hero-title">讓文字替你把心裡的霧，慢慢診成一帖處方。</h1>
+          <div class="hero-actions">
+            <a class="primary-link" href="#quiz">開始問診</a>
+            <a class="secondary-link" href="#note">服用說明</a>
+          </div>
+          <div class="trust-row" aria-label="測驗特色">
+            <span>依選項統計</span>
+            <span>台灣文學處方</span>
+            <span>非醫療診斷</span>
+          </div>
+        </div>
+        <aside class="intake-note" id="note" aria-label="測驗說明">
+          <span>服用方式</span>
+          <strong>12 題，約 3 分鐘</strong>
+          <p>每題只選一個最靠近你的句子。不必推理，也不必選得漂亮；讓直覺替你翻開一張較接近此刻的台灣文學處方。</p>
+        </aside>
+      </section>
+
+      <section id="quiz" class="quiz-section reveal" aria-labelledby="quiz-title">
+        <div class="section-heading">
+          <p class="eyebrow">Consultation</p>
+          <h2 id="quiz-title">文學問診室</h2>
+          <p>請不要急著分析。第一個浮上來的答案，常常比完整的解釋更靠近內心。</p>
+        </div>
+
+        <div class="test-card" aria-live="polite">
+          <div class="test-topline">
+            <span id="progress-text">問診 1 / 12</span>
+            <button type="button" id="restart-button">重新開始</button>
+          </div>
+          <div class="progress-track" aria-hidden="true">
+            <span id="progress-bar"></span>
+          </div>
+
+          <p id="question-kicker" class="question-kicker">請選擇一句最接近此刻的句子；若都不像，可以略過這題</p>
+          <h3 id="question-title"></h3>
+          <p id="selection-status" class="selection-status" aria-live="polite"></p>
+          <div id="option-grid" class="option-grid"></div>
+
+          <div class="test-actions">
+            <button type="button" id="back-button">上一頁</button>
+            <button type="button" id="skip-button">略過這題</button>
+            <button type="button" id="next-button" disabled>翻至下一頁</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="result" class="result-section reveal" aria-labelledby="result-title">
+        <div class="result-paper">
+          <div class="paper-header">
+            <div>
+              <p class="eyebrow">Prescription</p>
+              <h2 id="result-title">尚未開立處方</h2>
+            </div>
+            <span id="result-category">等待作答</span>
+          </div>
+
+          <div class="result-summary">
+            <p class="result-label">此刻症狀</p>
+            <strong id="result-symptom">請先完成測驗</strong>
+            <p id="result-summary-text">問診完成後，這裡只會留下你此刻最接近的閱讀處方簽。</p>
+          </div>
+
+          <div class="result-explain" id="result-explain" hidden>
+            <h3>為什麼會開出這張處方</h3>
+            <p id="reason-main"></p>
+            <div class="result-metrics">
+              <div>
+                <span>主要傾向</span>
+                <strong id="primary-score">-</strong>
+              </div>
+              <div>
+                <span>次要靠近</span>
+                <strong id="secondary-score">-</strong>
+              </div>
+              <div>
+                <span>判讀方式</span>
+                <strong id="confidence-score">-</strong>
+              </div>
+            </div>
+            <div class="clue-box">
+              <p>導向此結果的選項</p>
+              <ul id="answer-clues"></ul>
+            </div>
+            <p class="result-note">這不是醫療診斷，而是一張由文字整理出的臨時處方箋。</p>
+            <div class="score-list" id="score-list" aria-label="問診殘影"></div>
+            <div class="deep-reading" id="deep-reading" aria-label="深層解析"></div>
+            <div class="result-save" aria-label="保存閱讀處方">
+              <div>
+                <h3>留下這張處方箋</h3>
+                <p>可以把文字版處方寄給自己，或下載成圖片保存。</p>
+              </div>
+              <div class="save-controls">
+                <label for="result-email">寄到信箱</label>
+                <div class="email-row">
+                  <input id="result-email" type="email" inputmode="email" placeholder="your@email.com" />
+                  <button type="button" id="email-result-button">寄出文字版</button>
+                </div>
+                <button type="button" id="download-result-button">預覽／保存處方圖</button>
+                <p id="save-status" class="save-status" aria-live="polite"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="paper-actions">
+            <a href="#quiz">重新測驗</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>文學診療室</span>
+      <span>本測驗僅作展覽互動與閱讀引導，不等同醫療或心理診斷。</span>
+      <span>
+        BGM：
+        <a href="https://commons.wikimedia.org/wiki/File:%E3%80%90%E7%84%A1%E6%96%99%E3%83%95%E3%83%AA%E3%83%BCBGM%E3%80%91%E5%88%87%E3%81%AA%E3%81%84%E3%83%94%E3%82%A2%E3%83%8E%E3%82%BD%E3%83%AD%E3%80%8CPiano_Melancholy%E3%80%8D.opus" target="_blank" rel="noreferrer">
+          Piano Melancholy
+        </a>
+        （PeriTune, CC BY）
+      </span>
+    </footer>
+
+    <div class="image-dialog" id="result-image-dialog" hidden>
+      <div class="image-dialog-backdrop" data-close-image-dialog></div>
+      <div class="image-dialog-panel" role="dialog" aria-modal="true" aria-labelledby="image-dialog-title">
+        <div class="image-dialog-heading">
+          <div>
+            <p class="eyebrow">Prescription Card</p>
+            <h2 id="image-dialog-title">處方圖已產生</h2>
+          </div>
+          <button type="button" class="icon-close" data-close-image-dialog aria-label="關閉處方圖預覽">×</button>
+        </div>
+        <p class="image-dialog-help">手機可長按圖片保存；若瀏覽器支援，也可以直接分享或下載。</p>
+        <img id="result-image-preview" alt="文學診療室處方圖預覽" />
+        <div class="image-dialog-actions">
+          <button type="button" id="share-image-button">分享圖片</button>
+          <button type="button" id="save-image-button">下載圖片</button>
+          <a id="open-image-link" target="_blank" rel="noreferrer">開新分頁</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="./script.js?v=20260730-question-overhaul"></script>
+  </body>
+</html>

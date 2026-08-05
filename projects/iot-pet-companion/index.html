@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IoT 寵物陪伴系統｜Lynn Portfolio</title>
+  <meta name="description" content="Lynn 的畢業專題作品：以 Raspberry Pi、Flask、Flutter 整合遠端操控、自動避障與即時影像串流的 IoT 寵物陪伴系統。">
+  <style>
+    :root { color-scheme: light; --ink:#18202a; --muted:#5b6573; --line:#d8dee7; --panel:#f7f9fb; --accent:#0f766e; --accent-2:#b45309; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: "Noto Sans TC", "Microsoft JhengHei", system-ui, sans-serif; color:var(--ink); background:#fff; line-height:1.75; }
+    main { max-width: 980px; margin: 0 auto; padding: 40px 22px 64px; }
+    nav { margin-bottom: 32px; }
+    a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    .back { color: var(--muted); font-size: 14px; }
+    .hero { border-bottom: 1px solid var(--line); padding-bottom: 28px; margin-bottom: 28px; }
+    .eyebrow { color: var(--accent-2); font-size: 13px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+    h1 { margin: 8px 0 12px; font-size: clamp(32px, 5vw, 52px); line-height:1.08; letter-spacing:0; }
+    .lead { max-width: 760px; font-size: 18px; color: var(--muted); margin: 0; }
+    .meta { display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
+    .meta span { border:1px solid var(--line); background:var(--panel); border-radius: 6px; padding: 6px 10px; font-size: 14px; }
+    section { margin-top: 34px; }
+    h2 { font-size: 22px; margin: 0 0 12px; }
+    ul { padding-left: 1.2em; }
+    li { margin: 6px 0; }
+    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap:14px; }
+    .box { border:1px solid var(--line); border-radius:8px; padding:16px; background:var(--panel); }
+    .box strong { display:block; margin-bottom: 4px; }
+    .links { display:flex; flex-wrap:wrap; gap:10px; margin-top: 18px; }
+    .button { display:inline-flex; align-items:center; min-height:40px; border:1px solid var(--ink); border-radius:6px; padding:8px 12px; color:var(--ink); text-decoration:none; background:#fff; }
+    .button.primary { background:var(--ink); color:#fff; }
+  </style>
+</head>
+<body>
+  <main>
+    <nav><a class="back" href="../../index.html">返回作品集</a></nav>
+
+    <header class="hero">
+      <div class="eyebrow">Graduation Project / IoT</div>
+      <h1>IoT 寵物陪伴系統</h1>
+      <p class="lead">以 Raspberry Pi 作為硬體核心，整合感測器、馬達、Flask REST API 與 Flutter App，完成遠端控制、自動避障與即時影像串流的畢業專題。</p>
+      <div class="meta">
+        <span>Raspberry Pi</span>
+        <span>Flask REST API</span>
+        <span>Flutter App</span>
+        <span>GPIO / Motor Control</span>
+        <span>MJPEG Streaming</span>
+      </div>
+      <div class="links">
+        <a class="button primary" href="https://github.com/lynn25004/IoT-Pet-companion-machine" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a class="button" href="https://1drv.ms/p/c/fd71da1dea47895c/IQDMHEFFaX8uTKvxJABpXvbUAQDs-z8y2wv67DpPHBs7V6c?e=m2fXS5" target="_blank" rel="noopener noreferrer">Demo 簡報</a>
+      </div>
+    </header>
+
+    <section>
+      <h2>作品重點</h2>
+      <div class="grid">
+        <div class="box"><strong>硬體整合</strong>以 Raspberry Pi 串接感測器與馬達，處理移動、避障與設備控制。</div>
+        <div class="box"><strong>後端 API</strong>使用 Flask 建立 RESTful API，讓 App 可以遠端下指令並取得設備狀態。</div>
+        <div class="box"><strong>跨平台 App</strong>以 Flutter 製作控制介面，支援遠端操作與即時影像查看。</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>我負責的內容</h2>
+      <ul>
+        <li>規劃系統架構與資料流程，讓硬體、後端與 App 可以穩定串接。</li>
+        <li>實作遠端操控、自動避障與 MJPEG 即時影像串流。</li>
+        <li>進行硬體控制、連線測試與整體除錯，整理成可展示的畢業專題成果。</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

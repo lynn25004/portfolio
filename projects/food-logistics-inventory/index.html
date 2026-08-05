@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>企業庫存對帳與訂單檔案庫｜Lynn Portfolio</title>
+  <meta name="description" content="Lynn 為食品批發物流業者開發並導入的 Google Sheets + Apps Script 庫存對帳與訂單檔案庫系統。">
+  <style>
+    :root { color-scheme: light; --ink:#18202a; --muted:#5b6573; --line:#d8dee7; --panel:#f7f9fb; --accent:#0f766e; --accent-2:#b45309; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: "Noto Sans TC", "Microsoft JhengHei", system-ui, sans-serif; color:var(--ink); background:#fff; line-height:1.75; }
+    main { max-width: 980px; margin: 0 auto; padding: 40px 22px 64px; }
+    nav { margin-bottom: 32px; }
+    a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    .back { color: var(--muted); font-size: 14px; }
+    .hero { border-bottom: 1px solid var(--line); padding-bottom: 28px; margin-bottom: 28px; }
+    .eyebrow { color: var(--accent-2); font-size: 13px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+    h1 { margin: 8px 0 12px; font-size: clamp(32px, 5vw, 52px); line-height:1.08; letter-spacing:0; }
+    .lead { max-width: 760px; font-size: 18px; color: var(--muted); margin: 0; }
+    .meta { display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
+    .meta span { border:1px solid var(--line); background:var(--panel); border-radius: 6px; padding: 6px 10px; font-size: 14px; }
+    section { margin-top: 34px; }
+    h2 { font-size: 22px; margin: 0 0 12px; }
+    ul { padding-left: 1.2em; }
+    li { margin: 6px 0; }
+    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap:14px; }
+    .box { border:1px solid var(--line); border-radius:8px; padding:16px; background:var(--panel); }
+    .box strong { display:block; margin-bottom: 4px; }
+    .links { display:flex; flex-wrap:wrap; gap:10px; margin-top: 18px; }
+    .button { display:inline-flex; align-items:center; min-height:40px; border:1px solid var(--ink); border-radius:6px; padding:8px 12px; color:var(--ink); text-decoration:none; background:#fff; }
+    .button.primary { background:var(--ink); color:#fff; }
+  </style>
+</head>
+<body>
+  <main>
+    <nav><a class="back" href="../../index.html">返回作品集</a></nav>
+
+    <header class="hero">
+      <div class="eyebrow">Business Automation / De-identified</div>
+      <h1>企業庫存對帳與訂單檔案庫</h1>
+      <p class="lead">任職食品批發物流業者期間，將日常出貨、庫存扣帳、異動備註與 LINE 訂單訊息整理成可稽核、可查詢、可重算的營運工具。</p>
+      <div class="meta">
+        <span>Google Apps Script</span>
+        <span>Google Sheets</span>
+        <span>正則解析</span>
+        <span>FIFO 扣帳</span>
+        <span>訂單編號配對率 99.7%</span>
+      </div>
+      <div class="links">
+        <a class="button primary" href="inventory.gs" target="_blank" rel="noopener noreferrer">查看去識別原始碼</a>
+        <a class="button" href="README.md" target="_blank" rel="noopener noreferrer">查看 README</a>
+      </div>
+    </header>
+
+    <section>
+      <h2 id="系統做什麼">系統做什麼</h2>
+      <div class="grid">
+        <div class="box"><strong>每日自動扣帳</strong>讀取出貨明細，依到期日 FIFO 分批扣除庫存。</div>
+        <div class="box"><strong>多種異動處理</strong>自動分類一般出貨、退貨入庫、換貨抵銷、司機回庫與補貨。</div>
+        <div class="box"><strong>訂單檔案庫</strong>解析 LINE 群組訊息，建立可查詢的訂單紀錄並提升追蹤效率。</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>技術重點</h2>
+      <ul>
+        <li>以正則表達式解析中文手寫備註，判斷加扣方向與異動類型。</li>
+        <li>使用不可見字元標記系統備註與人工備註，避免重算時覆蓋使用者輸入。</li>
+        <li>支援跨日重算、一鍵補正、稽核標色、每週報表、快過期與低庫存提醒。</li>
+        <li>公開版本已移除客戶、店家、商品與內部編號，保留程式架構供作品集展示。</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
